@@ -19,6 +19,7 @@
 		895399F1266129870059203E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895399F0266129870059203E /* Preview Assets.xcassets */; };
 		895399FD266129870059203E /* bindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895399FC266129870059203E /* bindTests.swift */; };
 		89539A08266129870059203E /* bindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89539A07266129870059203E /* bindUITests.swift */; };
+		89DA193A26650532004B1E6D /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193926650532004B1E6D /* RecordingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		89539A03266129870059203E /* bindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = bindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		89539A07266129870059203E /* bindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bindUITests.swift; sourceTree = "<group>"; };
 		89539A09266129870059203E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		89DA193926650532004B1E6D /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +162,7 @@
 		895399E2266129860059203E /* bind WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				89DA193926650532004B1E6D /* RecordingView.swift */,
 				895399E3266129860059203E /* bindApp.swift */,
 				895399E5266129860059203E /* ContentView.swift */,
 				895399E7266129860059203E /* NotificationController.swift */,
@@ -387,6 +390,7 @@
 			files = (
 				895399E8266129860059203E /* NotificationController.swift in Sources */,
 				895399E6266129860059203E /* ContentView.swift in Sources */,
+				89DA193A26650532004B1E6D /* RecordingView.swift in Sources */,
 				895399EC266129860059203E /* ComplicationController.swift in Sources */,
 				895399E4266129860059203E /* bindApp.swift in Sources */,
 				895399EA266129860059203E /* NotificationView.swift in Sources */,
