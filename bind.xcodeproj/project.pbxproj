@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		893F6F8C266524CB0035742A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F6F8B266524CB0035742A /* Extensions.swift */; };
 		895399D3266129830059203E /* bind WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 895399D2266129830059203E /* bind WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		895399D8266129860059203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895399D7266129860059203E /* Assets.xcassets */; };
 		895399DF266129860059203E /* bind WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 895399DE266129860059203E /* bind WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -20,6 +21,7 @@
 		895399FD266129870059203E /* bindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895399FC266129870059203E /* bindTests.swift */; };
 		89539A08266129870059203E /* bindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89539A07266129870059203E /* bindUITests.swift */; };
 		89DA193A26650532004B1E6D /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193926650532004B1E6D /* RecordingView.swift */; };
+		89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193B26651F76004B1E6D /* RecordingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +81,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		893F6F8B266524CB0035742A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		895399CE266129830059203E /* bind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895399D2266129830059203E /* bind WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bind WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		895399D7266129860059203E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 		89539A07266129870059203E /* bindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bindUITests.swift; sourceTree = "<group>"; };
 		89539A09266129870059203E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89DA193926650532004B1E6D /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		89DA193B26651F76004B1E6D /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,12 +166,14 @@
 		895399E2266129860059203E /* bind WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
-				89DA193926650532004B1E6D /* RecordingView.swift */,
 				895399E3266129860059203E /* bindApp.swift */,
+				89DA193926650532004B1E6D /* RecordingView.swift */,
+				89DA193B26651F76004B1E6D /* RecordingViewModel.swift */,
 				895399E5266129860059203E /* ContentView.swift */,
 				895399E7266129860059203E /* NotificationController.swift */,
 				895399E9266129860059203E /* NotificationView.swift */,
 				895399EB266129860059203E /* ComplicationController.swift */,
+				893F6F8B266524CB0035742A /* Extensions.swift */,
 				895399ED266129870059203E /* Assets.xcassets */,
 				895399F2266129870059203E /* Info.plist */,
 				895399F3266129870059203E /* PushNotificationPayload.apns */,
@@ -391,6 +397,8 @@
 				895399E8266129860059203E /* NotificationController.swift in Sources */,
 				895399E6266129860059203E /* ContentView.swift in Sources */,
 				89DA193A26650532004B1E6D /* RecordingView.swift in Sources */,
+				893F6F8C266524CB0035742A /* Extensions.swift in Sources */,
+				89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */,
 				895399EC266129860059203E /* ComplicationController.swift in Sources */,
 				895399E4266129860059203E /* bindApp.swift in Sources */,
 				895399EA266129860059203E /* NotificationView.swift in Sources */,
