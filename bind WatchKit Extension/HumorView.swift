@@ -16,26 +16,66 @@ struct HumorView: View {
             
             VStack{
                 
-                Text("Como voce se sentiu hoje?")
+                Text("Como você se sentiu hoje?")
+                    .fontWeight(.semibold)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
                     .frame(width: 120, alignment: .center)
                 
                 
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Bem")
+                Button(
+                    action: {
+                    
+                },
+                       label: {
+                    HStack{
+                        Image("circulo").resizable().aspectRatio(contentMode: .fill)
+                            .frame(width: 20, height: 20, alignment: .center)
+                        Text("Bem")
+                            .padding(.leading, 20)
+                    }
+                    .padding(.leading, -30)
                 })
+                .foregroundColor(Color("verde"))
+                .background(Color("verde").opacity(0.14))
+                .cornerRadius(25)
+                
                 Button(action: {}, label: {
-                    Text("Normal")
+                    HStack{
+                        Image("quadrado").resizable().aspectRatio(contentMode: .fill)
+                            .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        Text("Normal")
+                            .padding(.leading, 20)
+                    }
+                    .padding(.leading, -15)
                 })
-                Button(action: /*@START_MENU_TOKEN@*/{}/*@END_MENU_TOKEN@*/, label: {
-                    Text("Para baixo")
+                .foregroundColor(Color("cinza"))
+                .background(Color("cinza").opacity(0.14))
+                .cornerRadius(25)
+                
+                
+                Button(
+                    action: {
+                    
+                },
+                    label: {
+                    HStack{
+                        Image("triangulo").resizable().aspectRatio(contentMode: .fill)
+                            .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .padding(.leading, 25)
+                        Text("Para baixo")
+                            .padding(.leading, 15)
+                    }
+                    .padding(.leading, -15)
                 })
+                
+                .foregroundColor(Color("ciano"))
+                .background(Color("ciano").opacity(0.15))
+                .cornerRadius(25)
             }
             .frame(width: .infinity , height:  .infinity, alignment: .center)
             .padding()
 
-            
         }
         
     }

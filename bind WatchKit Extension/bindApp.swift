@@ -12,7 +12,7 @@ struct bindApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                InicialView()
             }
         }
 

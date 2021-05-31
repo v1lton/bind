@@ -22,10 +22,16 @@ struct InicialView: View {
             },
                 label: {
                     Text("Button")
-            })
-                .sheet(isPresented: $modal, content: {
-                    ContentView(modal:self.$modal)
+                    
+            }
+            )
+           
+            
+            
+            .sheet(isPresented: $modal, content: {
+                    HumorView(modal:self.$modal)
                 })
+            
         }
     }
 }
