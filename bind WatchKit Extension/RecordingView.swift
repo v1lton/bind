@@ -6,10 +6,15 @@
 //
 
 import SwiftUI
+import Combine
+import AVFoundation
 
 struct RecordingView: View {
+    @ObservedObject var audioRecorder: RecordingViewModel
+    @State var isRecording = false
     @State private var animateBigCircle = false
     @State private var animateStroke = false
+    
     var body: some View {
         
         GeometryReader { geometry in
@@ -22,52 +27,92 @@ struct RecordingView: View {
                     .multilineTextAlignment(.center)
                 
                 Spacer()
-                    .frame(maxHeight: geometry.size.height * 0.1)
                 
-                ZStack {
-                    Circle()
-                        .stroke()
-                        .foregroundColor(.purple)
-                        .scaleEffect(animateStroke ? 1 : 0.3)
-                        .opacity(animateStroke ? 1 : 1)
-                        .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
-                        .onAppear(){
-                            self.animateStroke.toggle()
+                if !isRecording {
+                    Button(action: {
+                        isRecording.toggle()
+                        self.audioRecorder.startRecording()
+                    }) {
+                        ZStack {
+                            Circle()
+                                .opacity(0)
+
+                            Circle()
+                                .fill(Color.purple)
+                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                            
+                            Circle()
+                                .fill(Color.purple)
+                                .scaleEffect(0.75)
+                            
+                            Image(systemName: "mic")
+                                .font(.system(.title2, design: .rounded))
+                                .font(Font.system(.title2).bold())
                         }
-                        
-                    Circle()
-                        .fill(Color.purple)
-                        .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                        .scaleEffect(animateBigCircle ? 0.8 : 1.1)
-                        .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
-                        .onAppear(){
-                            self.animateBigCircle.toggle()
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                } else {
+                    Button(action: {
+                        isRecording.toggle()
+                        self.audioRecorder.stopRecording()
+                    }) {
+                        ZStack {
+                            Circle()
+                                .stroke()
+                                .foregroundColor(.purple)
+                                .scaleEffect(animateStroke ? 1 : 0.3)
+                                .opacity(animateStroke ? 1 : 1)
+                                .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
+                                .onAppear(){
+                                    self.animateStroke.toggle()
+                                }
+                            
+                            Circle()
+                                .fill(Color.purple)
+                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                                .scaleEffect(animateBigCircle ? 0.8 : 1.1)
+                                .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
+                                .onAppear(){
+                                    self.animateBigCircle.toggle()
+                                }
+                            
+                            Circle()
+                                .fill(Color.purple)
+                                .scaleEffect(0.75)
+                            
+                            Image(systemName: "mic")
+                                .font(.system(.title2, design: .rounded))
+                                .font(Font.system(.title2).bold())
                         }
-                    
-                    Circle()
-                        .fill(Color.purple)
-                        .scaleEffect(0.75)
-                    
-                    Image(systemName: "mic")
-                        .font(.system(.title2, design: .rounded))
-                        .font(Font.system(.title2).bold())
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
                 
                 
-                Spacer()
-                    .frame(maxHeight: geometry.size.height * 0.1)
-                
-                Button(action: /*@START_MENU_TOKEN@*//*@PLACEHOLDER=Action@*/{}/*@END_MENU_TOKEN@*/) {
-                    Text("toque para finalizar")
-                        .font(.system(.footnote, design: .rounded))
-                        .font(.system(size: 11))
-
-
+                if !isRecording {
+                    Button(action: {
+                        isRecording.toggle()
+                        self.audioRecorder.startRecording()
+                    })
+                    {
+                        Text("toque para gravar")
+                            .fontWeight(.light)
+                            .font(.system(size: 11))
+                    }
+                    .buttonStyle(PlainButtonStyle())
+                } else {
+                    Button(action: {
+                        isRecording.toggle()
+                        self.audioRecorder.stopRecording()
+                    })
+                    {
+                        Text("toque para finalizar")
+                            .fontWeight(.light)
+                            .font(.system(size: 11))
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
-                .buttonStyle(PlainButtonStyle())
-                
             }
-            
         }
         
     }
@@ -76,11 +121,12 @@ struct RecordingView: View {
 struct RecordingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecordingView()
-            RecordingView()
+            RecordingView(audioRecorder: RecordingViewModel())
+                .previewDevice("Apple Watch Series 6 - 44mm")
+            RecordingView(audioRecorder: RecordingViewModel())
                 .previewDevice("Apple Watch Series 6 - 40mm")
-            RecordingView()
-                .previewDevice("Apple Watch Series 5 - 40mm")
+            RecordingView(audioRecorder: RecordingViewModel())
+                .previewDevice("Apple Watch Series 6 - 40mm")
         }
     }
 }
