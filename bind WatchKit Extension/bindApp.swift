@@ -9,11 +9,13 @@ import SwiftUI
 
 @main
 struct bindApp: App {
+    let container = PersistenceController.shared.container
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView()
+                InicialView()
             }
+            .environment(\.managedObjectContext, container.viewContext)
         }
 
         WKNotificationScene(controller: NotificationController.self, category: "myCategory")
