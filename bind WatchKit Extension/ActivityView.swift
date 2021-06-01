@@ -20,7 +20,7 @@ struct ActivityView: View {
     var body: some View {
         VStack {
             
-            StatusModel(duration: $duration, bpm: $bpm, calories: $calories)
+            StatusModel(duration: $duration, bpm: $bpm, calories: $calories) //adicionar variável para icone do humor
             
             Spacer()
             
