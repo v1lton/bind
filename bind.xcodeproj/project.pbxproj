@@ -405,7 +405,7 @@
 				B4463563266506090000C1B8 /* Data.xcdatamodeld in Sources */,
 				895399E8266129860059203E /* NotificationController.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
-				895399E6266129860059203E /* ContentView.swift in Sources */,
+				895399E6266129860059203E /* HumorView.swift in Sources */,
 				B446358626650B340000C1B8 /* Persistence.swift in Sources */,
 				895399EC266129860059203E /* ComplicationController.swift in Sources */,
 				1748B70526650E5100E91484 /* InicialView.swift in Sources */,
@@ -590,7 +590,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.5;
 			};
 			name = Debug;
 		};
@@ -614,7 +614,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.5;
 			};
 			name = Release;
 		};
@@ -634,7 +634,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.5;
 			};
 			name = Debug;
 		};
@@ -654,7 +654,7 @@
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.0.1;
+				WATCHOS_DEPLOYMENT_TARGET = 7.5;
 			};
 			name = Release;
 		};
