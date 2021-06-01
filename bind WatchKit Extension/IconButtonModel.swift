@@ -8,13 +8,25 @@
 import SwiftUI
 
 struct IconButtonModel: View {
+    
+    @Binding var iconButton: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {}) {
+            Image(systemName: iconButton)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .font(Font.title.weight(.semibold))
+                .frame(width: 15, height: 15, alignment: .center)
+        }
+        .foregroundColor(Color("roxo"))
+        .background(Color("roxo").opacity(0.14))
+        .cornerRadius(25)
     }
 }
 
 struct IconButtonModel_Previews: PreviewProvider {
     static var previews: some View {
-        IconButtonModel()
+        IconButtonModel(iconButton: Binding.constant(""))
     }
 }

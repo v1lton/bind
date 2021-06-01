@@ -9,9 +9,11 @@ import SwiftUI
 
 struct StatusModel: View {
     
+    // Checar validade das variaveis com o que sera recebido
     @Binding var duration: String
     @Binding var bpm: String
     @Binding var calories: String
+    // @Binding var iconStatus: String
     
     var body: some View {
         HStack {
