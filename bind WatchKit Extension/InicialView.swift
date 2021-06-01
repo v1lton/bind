@@ -10,28 +10,53 @@ import SwiftUI
 struct InicialView: View {
     
     @State private var modal = false
-
+    @State private var addRecord = false
+    @State private var history = false
     
     var body: some View {
-        VStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            
+        VStack (alignment: .leading, spacing: 10){
+            Text("Bind")
+            Spacer()
             Button(
                 action: {
                     self.modal.toggle() //true
-            },
+                },
                 label: {
-                    Text("Button")
-                    
-            }
+                    Text("Humor")
+                }
             )
-           
-            
-            
             .sheet(isPresented: $modal, content: {
-                    HumorView(modal:self.$modal)
-                })
+                HumorView(modal:self.$modal)
+            })
+            Button(
+                action: {
+                    self.addRecord.toggle() //true
+                },
+                label: {
+                    Text("Registrar")
+                }
+            )
+            .sheet(isPresented: $addRecord, content: {
+                TemporaryAddHistory(modal: self.$addRecord)
+            })
             
+            Button(
+                action: {
+                    self.history.toggle() //true
+                },
+                label: {
+                    Text("Histórico")
+                }
+            )
+            .sheet(isPresented: $history, content: {
+                HistoryView(modal: self.$history)
+                    .toolbar(content: {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Close") { self.history.toggle()
+                            }
+                        }
+                    })
+            })
         }
     }
 }
