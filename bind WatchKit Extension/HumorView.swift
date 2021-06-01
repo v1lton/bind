@@ -20,7 +20,7 @@ struct HumorView: View {
                     .fontWeight(.semibold)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
-                    .frame(width: 120, alignment: .center)
+                    .frame(width: WKInterfaceDevice.current().screenBounds.width*0.7, alignment: .center)
                 
                 
                 Button(
@@ -30,7 +30,7 @@ struct HumorView: View {
                        label: {
                     HStack{
                         Image("circulo").resizable().aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20, alignment: .center)
+                            .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
                         Text("Bem")
                             .padding(.leading, 20)
                     }
@@ -43,7 +43,7 @@ struct HumorView: View {
                 Button(action: {}, label: {
                     HStack{
                         Image("quadrado").resizable().aspectRatio(contentMode: .fill)
-                            .frame(width: 20, height: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
                         Text("Normal")
                             .padding(.leading, 20)
                     }
@@ -61,12 +61,12 @@ struct HumorView: View {
                     label: {
                     HStack{
                         Image("triangulo").resizable().aspectRatio(contentMode: .fill)
-                            .frame(width: 25, height: 25, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                            .padding(.leading, 25)
+                            .frame(width: WKInterfaceDevice.current().screenBounds.width*0.1, height: WKInterfaceDevice.current().screenBounds.height*0.11, alignment: .center)
+                            .padding(.leading, WKInterfaceDevice.current().screenBounds.width*0.15)
                         Text("Para baixo")
-                            .padding(.leading, 15)
+                            .padding(.leading, WKInterfaceDevice.current().screenBounds.width*0.09)
                     }
-                    .padding(.leading, -15)
+                    .padding(.leading, -WKInterfaceDevice.current().screenBounds.width*0.13)
                 })
                 
                 .foregroundColor(Color("ciano"))
