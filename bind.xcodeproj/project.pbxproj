@@ -12,6 +12,7 @@
 		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
 		893F6F8C266524CB0035742A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F6F8B266524CB0035742A /* Extensions.swift */; };
 		1748B70526650E5100E91484 /* InicialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748B70426650E5100E91484 /* InicialView.swift */; };
+		893F6F8C266524CB0035742A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F6F8B266524CB0035742A /* Extensions.swift */; };
 		895399D3266129830059203E /* bind WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 895399D2266129830059203E /* bind WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		895399D8266129860059203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895399D7266129860059203E /* Assets.xcassets */; };
 		895399DF266129860059203E /* bind WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 895399DE266129860059203E /* bind WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -95,6 +96,7 @@
 		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
 		893F6F8B266524CB0035742A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1748B70426650E5100E91484 /* InicialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicialView.swift; sourceTree = "<group>"; };
+		893F6F8B266524CB0035742A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		895399CE266129830059203E /* bind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895399D2266129830059203E /* bind WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bind WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		895399D7266129860059203E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -188,7 +190,6 @@
 				895399E3266129860059203E /* bindApp.swift */,
 				89DA193926650532004B1E6D /* RecordingView.swift */,
 				89DA193B26651F76004B1E6D /* RecordingViewModel.swift */,
-				895399E5266129860059203E /* ContentView.swift */,
 				895399E5266129860059203E /* HumorView.swift */,
 				895399E7266129860059203E /* NotificationController.swift */,
 				895399E9266129860059203E /* NotificationView.swift */,
@@ -435,6 +436,7 @@
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
+				895399E6266129860059203E /* HumorView.swift in Sources */,
 				B4463592266528690000C1B8 /* HistoryButtonModel.swift in Sources */,
 				895399E6266129860059203E /* ContentView.swift in Sources */,
 				89DA193A26650532004B1E6D /* RecordingView.swift in Sources */,
@@ -672,7 +674,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
 				MARKETING_VERSION = 2.0;
@@ -696,7 +698,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
 				MARKETING_VERSION = 2.0;
@@ -717,7 +719,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -732,7 +734,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -6,7 +6,8 @@
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
     </entity>
     <entity name="Record" representedClassName="Record" syncable="YES" codeGenerationType="class">
-        <attribute name="audio" optional="YES" attributeType="Binary"/>
+        <attribute name="audio" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
+        <attribute name="audiopath" optional="YES" attributeType="String"/>
         <attribute name="cor" attributeType="String"/>
         <attribute name="date" attributeType="String"/>
         <attribute name="humor" attributeType="String"/>
@@ -15,6 +16,6 @@
     </entity>
     <elements>
         <element name="Activity" positionX="-54" positionY="9" width="128" height="74"/>
-        <element name="Record" positionX="-63" positionY="-18" width="128" height="119"/>
+        <element name="Record" positionX="-63" positionY="-18" width="128" height="134"/>
     </elements>
 </model>

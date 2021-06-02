@@ -9,11 +9,15 @@ import Foundation
 import SwiftUI
 import Combine
 import AVFoundation
+import CoreData
 
 class RecordingViewModel: ObservableObject {
-    let objectWillChange = PassthroughSubject<AVAudioRecorder, Never>()
     
+    @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: true)], animation: .easeIn) var history : FetchedResults<Record>
+    
+    let objectWillChange = PassthroughSubject<AVAudioRecorder, Never>()
     var audioRecorder: AVAudioRecorder!
+    var audioPath: String?
     
     var recording = false {
         didSet {
@@ -32,6 +36,7 @@ class RecordingViewModel: ObservableObject {
         }
         
         let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        self.audioPath = documentPath.absoluteString
         
         let audioFilename = documentPath.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY_'at'_HH:mm:ss")).m4a")
         
@@ -55,5 +60,7 @@ class RecordingViewModel: ObservableObject {
     func stopRecording() {
         audioRecorder.stop()
         recording = false
+        history.first?.audiopath = audioPath
+        PersistenceController.shared.save()
     }
 }
