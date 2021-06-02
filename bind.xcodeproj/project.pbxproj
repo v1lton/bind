@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		893F6F8C266524CB0035742A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F6F8B266524CB0035742A /* Extensions.swift */; };
 		1748B70526650E5100E91484 /* InicialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748B70426650E5100E91484 /* InicialView.swift */; };
 		895399D3266129830059203E /* bind WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 895399D2266129830059203E /* bind WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		895399D8266129860059203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895399D7266129860059203E /* Assets.xcassets */; };
@@ -21,6 +22,8 @@
 		895399FD266129870059203E /* bindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 895399FC266129870059203E /* bindTests.swift */; };
 		89539A08266129870059203E /* bindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89539A07266129870059203E /* bindUITests.swift */; };
 		B43274552666668900EAA3C4 /* TemporaryAddHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43274542666668900EAA3C4 /* TemporaryAddHistory.swift */; };
+		89DA193A26650532004B1E6D /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193926650532004B1E6D /* RecordingView.swift */; };
+		89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193B26651F76004B1E6D /* RecordingViewModel.swift */; };
 		B4463563266506090000C1B8 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4463561266506090000C1B8 /* Data.xcdatamodeld */; };
 		B446358626650B340000C1B8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446358526650B340000C1B8 /* Persistence.swift */; };
 		B4463591266528690000C1B8 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446358F266528690000C1B8 /* HistoryView.swift */; };
@@ -84,6 +87,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		893F6F8B266524CB0035742A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		1748B70426650E5100E91484 /* InicialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicialView.swift; sourceTree = "<group>"; };
 		895399CE266129830059203E /* bind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895399D2266129830059203E /* bind WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bind WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +110,8 @@
 		89539A07266129870059203E /* bindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = bindUITests.swift; sourceTree = "<group>"; };
 		89539A09266129870059203E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B43274542666668900EAA3C4 /* TemporaryAddHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryAddHistory.swift; sourceTree = "<group>"; };
+		89DA193926650532004B1E6D /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		89DA193B26651F76004B1E6D /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
 		B4463562266506090000C1B8 /* Record.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Record.xcdatamodel; sourceTree = "<group>"; };
 		B446358526650B340000C1B8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B446358F266528690000C1B8 /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -174,12 +180,16 @@
 			isa = PBXGroup;
 			children = (
 				895399E3266129860059203E /* bindApp.swift */,
+				89DA193926650532004B1E6D /* RecordingView.swift */,
+				89DA193B26651F76004B1E6D /* RecordingViewModel.swift */,
+				895399E5266129860059203E /* ContentView.swift */,
 				895399E5266129860059203E /* HumorView.swift */,
 				895399E7266129860059203E /* NotificationController.swift */,
 				895399E9266129860059203E /* NotificationView.swift */,
 				B4463590266528690000C1B8 /* HistoryButtonModel.swift */,
 				B446358F266528690000C1B8 /* HistoryView.swift */,
 				895399EB266129860059203E /* ComplicationController.swift */,
+				893F6F8B266524CB0035742A /* Extensions.swift */,
 				895399ED266129870059203E /* Assets.xcassets */,
 				895399F2266129870059203E /* Info.plist */,
 				895399F3266129870059203E /* PushNotificationPayload.apns */,
@@ -414,8 +424,12 @@
 				B4463563266506090000C1B8 /* Data.xcdatamodeld in Sources */,
 				895399E8266129860059203E /* NotificationController.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
-				895399E6266129860059203E /* HumorView.swift in Sources */,
 				B4463592266528690000C1B8 /* HistoryButtonModel.swift in Sources */,
+				895399E6266129860059203E /* ContentView.swift in Sources */,
+				89DA193A26650532004B1E6D /* RecordingView.swift in Sources */,
+				893F6F8C266524CB0035742A /* Extensions.swift in Sources */,
+				89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */,
+				895399E6266129860059203E /* HumorView.swift in Sources */,
 				B446358626650B340000C1B8 /* Persistence.swift in Sources */,
 				B43274552666668900EAA3C4 /* TemporaryAddHistory.swift in Sources */,
 				895399EC266129860059203E /* ComplicationController.swift in Sources */,
@@ -586,7 +600,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				ENABLE_PREVIEWS = YES;
@@ -596,8 +612,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -610,7 +628,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
 				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				ENABLE_PREVIEWS = YES;
@@ -620,8 +640,10 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind.watchkitapp.watchkitextension;
 				PRODUCT_NAME = "${TARGET_NAME}";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -636,12 +658,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2QC8C374PG;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -656,12 +682,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2QC8C374PG;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind.watchkitapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
@@ -675,9 +705,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2QC8C374PG;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -690,9 +720,9 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 2QC8C374PG;
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
