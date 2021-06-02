@@ -22,26 +22,27 @@ struct HistoryView: View {
                         .font(.system(size: 19))
                         .fontWeight(.bold)
                     
-                    ForEach(history, id: \.self) { item in
-                        Button(action: {
-                            details.toggle()
-                        }, label: {
-                            HistoryButtonModel(image: item.image!, color: Color(item.cor!), title: item.date!, frame: screen.size)
-                        })
-                        .buttonStyle(PlainButtonStyle())
-                        .sheet(isPresented: $details) {
-                            Text(item.date!)
-                                .toolbar(content: {
-                                    ToolbarItem(placement: .cancellationAction) {
-                                        Button("Close") { self.details.toggle() }
-                                    }
-                                })
+                    if (history.isEmpty) {
+                        Text("Seu histórico ainda está vazio...")
+                    } else {
+                        ForEach(history, id: \.self) { item in
+                            Button(action: {
+                                details.toggle()
+                            }, label: {
+                                HistoryButtonModel(image: item.image!, color: Color(item.cor!), title: item.date!, frame: screen.size)
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                            .sheet(isPresented: $details) {
+                                Text(item.date!)
+                                    .toolbar(content: {
+                                        ToolbarItem(placement: .cancellationAction) {
+                                            Button("Close") { self.details.toggle() }
+                                        }
+                                    })
+                            }
                         }
                     }
                 }
-                .overlay(
-                    Text(history.isEmpty ? "Seu histórico ainda está vazio..." : "")
-                )
             }
         }
     }
