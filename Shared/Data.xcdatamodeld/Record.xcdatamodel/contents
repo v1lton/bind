@@ -9,7 +9,7 @@
         <attribute name="audio" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>
         <attribute name="audiopath" optional="YES" attributeType="String"/>
         <attribute name="cor" attributeType="String"/>
-        <attribute name="date" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="date" attributeType="String"/>
         <attribute name="humor" attributeType="String"/>
         <attribute name="image" attributeType="String"/>
         <relationship name="activityRecord" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="Activity"/>
