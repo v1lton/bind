@@ -10,6 +10,7 @@ import Combine
 import AVFoundation
 
 struct RecordingView: View {
+    
     @ObservedObject var audioRecorder: RecordingViewModel
     @State var isRecording = false
     @State private var animateBigCircle = false
@@ -55,61 +56,84 @@ struct RecordingView: View {
                     Button(action: {
                         isRecording.toggle()
                         self.audioRecorder.stopRecording()
-                    }) {
-                        ZStack {
-                            Circle()
-                                .stroke()
-                                .foregroundColor(.purple)
-                                .scaleEffect(animateStroke ? 1 : 0.3)
-                                .opacity(animateStroke ? 1 : 1)
-                                .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
-                                .onAppear(){
-                                    self.animateStroke.toggle()
+                    },
+                    label: {
+                        NavigationLink(
+                            destination:
+                                SuccessMessageView()
+                                    .navigationBarBackButtonHidden(true)
+                                    .toolbar(content: {
+                                        ToolbarItem(placement: .cancellationAction) {
+                                            Button(
+                                                action: {
+                                                NotificationCenter.default.post(name: Notification.Name("successToInicialView"), object: nil)
+                                                },
+                                                label: {
+                                                Text("Início")
+                                                    .foregroundColor(Color("roxo"))
+                                            })
+                                        }
+                                    }),
+                            label: {
+                                ZStack {
+                                    Circle()
+                                        .stroke()
+                                        .foregroundColor(.purple)
+                                        .scaleEffect(animateStroke ? 1 : 0.3)
+                                        .opacity(animateStroke ? 1 : 1)
+                                        .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
+                                        .onAppear(){
+                                            self.animateStroke.toggle()
+                                        }
+                                    
+                                    Circle()
+                                        .fill(Color.purple)
+                                        .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                                        .scaleEffect(animateBigCircle ? 0.8 : 1.1)
+                                        .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
+                                        .onAppear(){
+                                            self.animateBigCircle.toggle()
+                                        }
+                                    
+                                    Circle()
+                                        .fill(Color.purple)
+                                        .scaleEffect(0.75)
+                                    
+                                    Image(systemName: "mic")
+                                        .font(.system(.title2, design: .rounded))
+                                        .font(Font.system(.title2).bold())
                                 }
-                            
-                            Circle()
-                                .fill(Color.purple)
-                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                                .scaleEffect(animateBigCircle ? 0.8 : 1.1)
-                                .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
-                                .onAppear(){
-                                    self.animateBigCircle.toggle()
-                                }
-                            
-                            Circle()
-                                .fill(Color.purple)
-                                .scaleEffect(0.75)
-                            
-                            Image(systemName: "mic")
-                                .font(.system(.title2, design: .rounded))
-                                .font(Font.system(.title2).bold())
-                        }
-                    }
-                    .buttonStyle(PlainButtonStyle())
-                }
-                
-                
-                if !isRecording {
-                    Button(action: {
-                        isRecording.toggle()
-                        self.audioRecorder.startRecording()
+                                
+                            })
+                            .buttonStyle(PlainButtonStyle())
+                    
                     })
-                    {
-                        Text("toque para gravar")
-                            .fontWeight(.light)
-                            .font(.system(size: 11))
-                    }
+                    .buttonStyle(PlainButtonStyle())
+                    
+                if !isRecording {
+                    Button(
+                        action: {
+                            isRecording.toggle()
+                            self.audioRecorder.startRecording()
+                    },
+                        label: {
+                            Text("toque para gravar")
+                                .fontWeight(.light)
+                                .font(.system(size: 11))
+                                .padding(.top, -10)
+                    })
                     .buttonStyle(PlainButtonStyle())
                 } else {
-                    Button(action: {
-                        isRecording.toggle()
-                        self.audioRecorder.stopRecording()
-                    })
-                    {
-                        Text("toque para finalizar")
-                            .fontWeight(.light)
-                            .font(.system(size: 11))
-                    }
+                    Button(
+                        action: {
+                            isRecording.toggle()
+                            self.audioRecorder.stopRecording()
+                    },
+                        label: {
+                            Text("toque para finalizar")
+                                .fontWeight(.light)
+                                .font(.system(size: 11))
+                        })
                     .buttonStyle(PlainButtonStyle())
                 }
             }
@@ -129,4 +153,5 @@ struct RecordingView_Previews: PreviewProvider {
                 .previewDevice("Apple Watch Series 6 - 40mm")
         }
     }
+}
 }
