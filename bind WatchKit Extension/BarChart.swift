@@ -9,42 +9,45 @@ import SwiftUI
 
 
 struct ChartData {
-    var label: String
+
     var value: Double
+    var image: String
+    var cor: String
 }
 
 let chartDataSet = [
-    ChartData(label: "January 2021", value: 340.32),
-    ChartData(label: "February 2021", value: 250.0),
-    ChartData(label: "March 2021", value: 430.22),
-    ChartData(label: "April 2021", value: 350.0),
-    ChartData(label: "May 2021", value: 450.0),
-    ChartData(label: "June 2021", value: 380.0),
-    ChartData(label: "July 2021", value: 365.98)
+    ChartData( value: 240.32, image: "quadrado", cor: "cinza"),
+    ChartData( value: 200.32, image: "triangulo", cor: "ciano"),
+    ChartData( value: 260.32, image: "quadrado", cor: "cinza"),
+    ChartData( value: 350.32, image: "circulo", cor: "verde"),
+    ChartData( value: 210.32, image: "triangulo", cor: "ciano"),
+    ChartData( value: 300.32, image: "circulo", cor: "verde")
+    
 ]
 
 struct BarChartCell: View {
     
     var value: Double
-    var barColor: Color
+    var barColor: String
+    var symbolType: String
     
     var body: some View {
-        RoundedRectangle(cornerRadius: 5)
-            .fill(barColor)
-            .scaleEffect(CGSize(width: 1, height: value), anchor: .bottom)
-        
+        VStack{
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color(barColor))
+                .scaleEffect(CGSize(width: 0.7, height: value), anchor: .bottom)
+            Image(symbolType)
+                .resizable()
+                .aspectRatio(contentMode:.fit)
+                .frame(width: 10, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }
     }
 }
 
 struct BarChart: View {
     
-    @State private var currentValue = ""
-    @State private var currentLabel = ""
     @State private var touchLocation: CGFloat = -1
-    
-    var title: String
-    var legend: String
-    var barColor: Color
+
     var data: [ChartData]
     
     var body: some View {
@@ -54,36 +57,18 @@ struct BarChart: View {
                 VStack {
                     HStack { //celulas (cada barra)
                         ForEach(0..<data.count, id: \.self) { i in
-                            BarChartCell(value: normalizedValue(index: i), barColor: barColor)
+                            BarChartCell(value: normalizedValue(index: i), barColor: data[i].cor, symbolType: data[i].image)
                                 .opacity(barIsTouched(index: i) ? 1 : 0.7)
                                 .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.05, height: 1) : CGSize(width: 1, height: 1), anchor: .bottom)
                                 .animation(.spring())
                                 .padding(.top)
                         }
                     }
-                    
-                    .gesture(DragGesture(minimumDistance: 0)
-                                .onChanged({ position in
-                                    let touchPosition = position.location.x/geometry.frame(in: .local).width
-                                    touchLocation = touchPosition
-                                    updateCurrentValue()
-                                })
-                                
-                                .onEnded({ _ in
-                                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                        withAnimation(Animation.easeOut(duration: 0.5)) {
-                                            resetValues()
-                                        }
-                                    }
-                                })
-                    )
-                    
                 }
             }
-            
-            
+
         }
-        .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height/2, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height/3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .padding()
     }
     
@@ -109,39 +94,12 @@ struct BarChart: View {
     func barIsTouched(index: Int) -> Bool {
         touchLocation > CGFloat(index)/CGFloat(data.count) && touchLocation < CGFloat(index+1)/CGFloat(data.count)
     }
-    
-    func updateCurrentValue()    {
-        let index = Int(touchLocation * CGFloat(data.count)) //A função updateCurrentValue usa o valor de touchLocation para encontrar o índice do valor em nossa matriz de dados . Portanto, para um touchLocation de 0,5, nosso índice será o índice intermediário na matriz de dados
-        guard index < data.count && index >= 0 else { //Precisamos ter cuidado aqui para ter certeza de que o índice não vai além do primeiro ou último índice em nosso array de dados , então usamos uma instrução guard para manter isso sob controle.
-            currentValue = ""
-            currentLabel = ""
-            return
-        }
-        currentValue = "\(data[index].value)"
-        currentLabel = data[index].label
-    }
-    
-    func resetValues() {
-        touchLocation = -1
-        currentValue  =  ""
-        currentLabel = ""
-    }
-    
-    func labelOffset(in width: CGFloat) -> CGFloat {
-        let currentIndex = Int(touchLocation * CGFloat(data.count))
-        guard currentIndex < data.count && currentIndex >= 0 else {
-            return 0
-        }
-        let cellWidth = width / CGFloat(data.count)
-        let actualWidth = width -    cellWidth
-        let position = cellWidth * CGFloat(currentIndex) - actualWidth/2
-        return position
-    }
+
 }
 
 struct BarChart_Previews: PreviewProvider {
     static var previews: some View {
-        BarChart(title: "Monthly Sales", legend: "EUR", barColor: .blue, data: chartDataSet)
+        BarChart(data: chartDataSet)
     }
 }
 

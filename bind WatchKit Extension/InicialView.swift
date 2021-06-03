@@ -14,10 +14,35 @@ struct InicialView: View {
     @State private var history = false
     
     var body: some View {
-        VStack (alignment: .leading){
+        VStack{
             
-            BarChart(title: "Monthly Sales", legend: "EUR", barColor: .blue, data: chartDataSet)
-//                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+            Text("Últimos 7 dias")
+                .font(.system(size: 10))
+                .foregroundColor(.white)
+                .frame(width: WKInterfaceDevice.current().screenBounds.width, alignment: .leading)
+                .padding(.leading,  WKInterfaceDevice.current().screenBounds.width*0.1)
+                .padding(.top,  WKInterfaceDevice.current().screenBounds.width*0.1)
+                
+            
+            Button(
+                action: {
+                    self.history.toggle() //true
+                },
+                label: {
+                    BarChart(data: chartDataSet)
+                }
+            )
+            .buttonStyle(PlainButtonStyle()) //colocar o button transparente, mostrando só o gráfico
+            .sheet(isPresented: $history, content: {
+                HistoryView(modal: self.$history)
+                    .toolbar(content: {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Close") { self.history.toggle()
+                            }
+                        }
+                    })
+                })
+           
             
             Spacer()
             Button(
@@ -52,16 +77,9 @@ struct InicialView: View {
 //                    Text("Histórico")
 //                }
 //            )
-//            .sheet(isPresented: $history, content: {
-//                HistoryView(modal: self.$history)
-//                    .toolbar(content: {
-//                        ToolbarItem(placement: .cancellationAction) {
-//                            Button("Close") { self.history.toggle()
-//                            }
-//                        }
-//                    })
-//            })
+//           
         }
+
     }
 }
 
