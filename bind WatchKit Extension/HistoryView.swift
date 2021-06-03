@@ -11,7 +11,6 @@ import UIKit
 struct HistoryView: View {
     @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: false)], animation: .easeIn) var history : FetchedResults<Record>
     
-    @Binding var modal: Bool
     @State var details = false
     
     var body: some View {
