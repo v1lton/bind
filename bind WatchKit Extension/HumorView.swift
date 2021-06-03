@@ -14,6 +14,7 @@ struct HumorView: View {
     @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var context
     
+    @State var modalToActivity: Bool = false
     @Binding var modal: Bool
     @State var humor: String = ""
     @State var cor: String = ""
@@ -47,6 +48,7 @@ struct HumorView: View {
                         cor = "verde"
                         image = "circulo"
                         addNewRegister()
+                        self.modalToActivity.toggle()
                     },
                     label: {
                         HStack{
@@ -60,6 +62,9 @@ struct HumorView: View {
                     .foregroundColor(Color("verde"))
                     .background(Color("verde").opacity(0.14))
                     .cornerRadius(25)
+                    .sheet(isPresented: $modalToActivity, content: {
+                        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xx"), modalHumorToActivy: self.$modalToActivity)
+                    })
                 
                 Button(
                     action: {

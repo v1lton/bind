@@ -11,6 +11,8 @@ import AVFoundation
 
 struct RecordingView: View {
     @ObservedObject var audioRecorder: RecordingViewModel
+    @State private var modal = false
+    @Binding var modalToActivyView: Bool
     @State var isRecording = false
     @State private var animateBigCircle = false
     @State private var animateStroke = false
@@ -55,6 +57,7 @@ struct RecordingView: View {
                     Button(action: {
                         isRecording.toggle()
                         self.audioRecorder.stopRecording()
+                        self.modal.toggle()
                     }) {
                         ZStack {
                             Circle()
@@ -86,6 +89,16 @@ struct RecordingView: View {
                         }
                     }
                     .buttonStyle(PlainButtonStyle())
+                    .sheet(isPresented: $modal, content: {
+                        SuccessMessageView()
+                            .toolbar(content: {
+                                ToolbarItem(placement: .cancellationAction) {
+                                    Button("Início") { //self.modal.toggle()
+                                        NotificationCenter.default.post(name: Notification.Name("popToRootView"), object: nil)
+                                    }
+                                }
+                            })
+                    })
                 }
                 
                 
@@ -121,11 +134,11 @@ struct RecordingView: View {
 struct RecordingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            RecordingView(audioRecorder: RecordingViewModel())
+            RecordingView(audioRecorder: RecordingViewModel(), modalToActivyView: .constant(true))
                 .previewDevice("Apple Watch Series 6 - 44mm")
-            RecordingView(audioRecorder: RecordingViewModel())
+            RecordingView(audioRecorder: RecordingViewModel(), modalToActivyView: .constant(true))
                 .previewDevice("Apple Watch Series 6 - 40mm")
-            RecordingView(audioRecorder: RecordingViewModel())
+            RecordingView(audioRecorder: RecordingViewModel(), modalToActivyView: .constant(true))
                 .previewDevice("Apple Watch Series 6 - 40mm")
         }
     }

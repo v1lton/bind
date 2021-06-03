@@ -56,28 +56,7 @@ struct InicialView: View {
             .sheet(isPresented: $modal, content: {
                 HumorView(modal:self.$modal)
             })
-            
-//            Button(
-//                action: {
-//                    self.addRecord.toggle() //true
-//                },
-//                label: {
-//                    Text("Registrar")
-//                }
-//            )
-//            .sheet(isPresented: $addRecord, content: {
-//                TemporaryAddHistory(modal: self.$addRecord)
-//            })
-            
-//            Button(
-//                action: {
-//                    self.history.toggle() //true
-//                },
-//                label: {
-//                    Text("Histórico")
-//                }
-//            )
-//           
+                 
         }
 
     }

@@ -13,9 +13,8 @@ struct ActivityView: View {
     @Binding var duration: String
     @Binding var bpm: String
     @Binding var calories: String
-    // @Binding var iconStatus: String
-    // @Binding var iconButton: String
-    // @Binding var data: Date
+    @Binding var modalHumorToActivy: Bool
+    @State private var modal = false
     
     var body: some View {
         VStack {
@@ -25,7 +24,9 @@ struct ActivityView: View {
             Spacer()
             
             HStack {
-                Button(action: {}) {
+                Button(action: {
+                    self.modal.toggle()
+                }) {
                     Image(systemName:"mic")
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -35,6 +36,9 @@ struct ActivityView: View {
                 .foregroundColor(Color("roxo"))
                 .background(Color("roxo").opacity(0.14))
                 .cornerRadius(25)
+                .sheet(isPresented: $modal, content: {
+                    RecordingView(audioRecorder: RecordingViewModel(), modalToActivyView: self.$modal)
+                })
                 
                 Button(action: {}) {
                     Image(systemName:"checkmark")
@@ -54,11 +58,11 @@ struct ActivityView: View {
 
 struct ActivityView_Previews: PreviewProvider {
     static var previews: some View {
-        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"))
+        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), modalHumorToActivy: .constant(true))
             .previewDevice("Apple Watch Series 5 - 44mm")
-        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"))
+        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), modalHumorToActivy: .constant(true))
             .previewDevice("Apple Watch Series 6 - 40mm")
-        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"))
+        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), modalHumorToActivy: .constant(true))
             .previewDevice("Apple Watch Series 3 - 38mm")
     }
 }
