@@ -46,14 +46,22 @@ struct ActivityView: View {
                         .navigationBarBackButtonHidden(true)
                         .toolbar(content: {
                             ToolbarItem(placement: .cancellationAction) {
-                                Button(
+                                ZStack {
+                                    Image(systemName: "house.circle.fill")
+                                        .resizable()
+                                        .foregroundColor(Color("roxo"))
+                                    
+                                    Button(
                                     action: {
-                                        NotificationCenter.default.post(name: Notification.Name("successToInicialView"), object: nil)
+                                    NotificationCenter.default.post(name: Notification.Name("successToInicialView"), object: nil)
                                     },
                                     label: {
-                                        Text("Início")
-                                            .foregroundColor(Color("AccentColor"))
+                                    Text("     ")
+                                        .fontWeight(.bold)
+                                        .font(.system(size: 15))
+                                        .foregroundColor(Color("roxo"))
                                     })
+                                }
                             }
                         }),
                     label: {
