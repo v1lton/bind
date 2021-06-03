@@ -101,7 +101,7 @@ struct ActivityView: View {
             fatalError("*** Unable to create the end date ***")
         }
 
-        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: startDate, options: [])
         
         let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: today, options: .discreteAverage) {(_, statistics, _) in
             guard let stats = statistics else {
