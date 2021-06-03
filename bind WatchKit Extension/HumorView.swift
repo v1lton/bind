@@ -153,8 +153,6 @@ struct HumorView: View {
         getHeartRateInfos()
         //getTime
         //getCalories
-        addNewRegister()
-        
     }
     
     func getHeartRateInfos() {
@@ -180,6 +178,7 @@ struct HumorView: View {
         let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: today, options: .discreteAverage) {(_, statistics, _) in
             guard let stats = statistics else {
                 print("Não foi possível calcular média de freq. card.")
+                addNewRegister()
                 return
             }
             
@@ -189,6 +188,7 @@ struct HumorView: View {
 
             DispatchQueue.main.async {
                 bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
+                addNewRegister()
             }
         }
         
@@ -209,6 +209,7 @@ struct HumorView: View {
             history.first?.activityRecord?.time = self.duration
             
             newRecord = history.first ?? Record()
+            print(newRecord)
             
         } else {
             let newRegister = Record(context: context)

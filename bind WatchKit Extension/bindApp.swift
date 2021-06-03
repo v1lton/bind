@@ -13,8 +13,8 @@ struct bindApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-//                InicialView()
-                HumorView(modal: Binding.constant(true))
+                InicialView()
+//                HumorView(modal: Binding.constant(true))
             }
             .environment(\.managedObjectContext, container.viewContext)
         }
