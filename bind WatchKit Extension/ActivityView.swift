@@ -22,6 +22,8 @@ struct ActivityView: View {
     // @Binding var iconButton: String
     // @Binding var data: Date
     
+    private let healthStore = HKHealthStore()
+    
     var body: some View {
         VStack {
             StatusModel(duration: $duration, bpm: $bpm, calories: $calories)
@@ -57,7 +59,6 @@ struct ActivityView: View {
     }
     
     func healthKitPermission() {
-        let healthStore = HKHealthStore()
         let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
         let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
         let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)!
@@ -84,25 +85,26 @@ struct ActivityView: View {
     }
     
     func getHeartRateInfos() {
-        guard let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate) else {
-            print("Não fooi possível obter dados de frequência cardíaca")
+        guard let heartRate = HKSampleType.quantityType(forIdentifier: .heartRate) else {
+            print("Não foi possível obter dados de frequência cardíaca")
             return
         }
         
         let predicate: NSPredicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeyHeartRateMotionContext, allowedValues: [2])
         
-        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate, options: .discreteAverage) {(query, statistics, error) in
-            
+        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate, options: .discreteAverage) {(_, statistics, _) in
             guard let stats = statistics else {
                 print("Não foi possível calcular média de freq. card.")
                 return
             }
             
-            let average = statistics?.averageQuantity()
+            let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
             print(average?.doubleValue(for: unit))
 //            bpm = average?.doubleValue(for: unit)
         }
+        
+        healthStore.execute(query)
     }
 }
 
