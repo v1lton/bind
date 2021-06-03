@@ -10,6 +10,7 @@ import SwiftUI
 struct SuccessMensageView: View {
     
     @State private var scale: CGFloat = 1
+    @State var isAnimated: Bool = false
     
     var body: some View {
         VStack {
@@ -20,33 +21,48 @@ struct SuccessMensageView: View {
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
                     .offset(CGSize(width: 3.0, height: 10.0))
                     .padding()
+                    .scaleEffect(isAnimated ? 1 : 0.7)
+                    .opacity(isAnimated ? 1 : 0.2)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
+                    .onAppear(){
+                        self.isAnimated.toggle()
+                    }
                 
                 Image("triangulo").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.09, height: WKInterfaceDevice.current().screenBounds.height*0.09, alignment: .center)
                     .rotationEffect(.degrees(33))
                     .offset(CGSize(width: 2.0, height: -5.0))
                     .padding()
-                    .scaleEffect(scale)
-                    .animation(.linear(duration: 1))
-                
+                    .scaleEffect(isAnimated ? 0.7 : 1)
+                    .opacity(isAnimated ? 0.2 : 1)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                 
                 Image("quadrado").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.06, height: WKInterfaceDevice.current().screenBounds.height*0.06, alignment: .center)
                     .rotationEffect(.degrees(30))
                     .offset(CGSize(width: 10.0, height: -9.0))
                     .padding()
+                    .scaleEffect(isAnimated ? 1 : 0.7)
+                    .opacity(isAnimated ? 1 : 0.2)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                     
                 
-                Image("triangulo").resizable().aspectRatio(contentMode: .fill)
+                Image("circulo").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.09, height: WKInterfaceDevice.current().screenBounds.height*0.09, alignment: .center)
                     .rotationEffect(.degrees(65))
                     .offset(CGSize(width: 15.0, height: 0))
                     .padding()
+                    .scaleEffect(isAnimated ? 0.7 : 1)
+                    .opacity(isAnimated ? 0.2 : 1)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                 
-                Image("circulo").resizable().aspectRatio(contentMode: .fill)
+                Image("triangulo").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
                     .offset(CGSize(width: 0, height: 35.0))
                     .padding()
+                    .scaleEffect(isAnimated ? 1 : 0.7)
+                    .opacity(isAnimated ? 1 : 0.2)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                     
                 
             }
@@ -65,22 +81,34 @@ struct SuccessMensageView: View {
                     .rotationEffect(.degrees(30))
                     .offset(CGSize(width: -10.0, height: -8.0))
                     .padding()
+                    .scaleEffect(isAnimated ? 0.7 : 1)
+                    .opacity(isAnimated ? 0.2 : 1)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                 
                 Image("circulo").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
                     .offset(CGSize(width: -7.0, height: 5.0))
                     .padding()
+                    .scaleEffect(isAnimated ? 1 : 0.7)
+                    .opacity(isAnimated ? 1 : 0.2)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                 
                 Image("triangulo").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.09, height: WKInterfaceDevice.current().screenBounds.height*0.09, alignment: .center)
                     .rotationEffect(.degrees(-45))
                     .offset(CGSize(width: -2.0, height: 5.0))
                     .padding()
+                    .scaleEffect(isAnimated ? 0.7 : 1)
+                    .opacity(isAnimated ? 0.2 : 1)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
                 
                 Image("quadrado").resizable().aspectRatio(contentMode: .fill)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.065, height: WKInterfaceDevice.current().screenBounds.height*0.065, alignment: .center)
                     .rotationEffect(.degrees(-30))
                     .padding()
+                    .scaleEffect(isAnimated ? 1 : 0.7)
+                    .opacity(isAnimated ? 1 : 0.2)
+                    .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: true))
             }
             
             Spacer()
