@@ -13,8 +13,13 @@ struct bindApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                InicialView()
+                InicialView().navigationBarTitle("bind")
+//                    .accentColor(Color("roxo"))
+//                    .foregroundColor(/*@START_MENU_TOKEN@*/.blue/*@END_MENU_TOKEN@*/)
+//                https://stackoverflow.com/questions/58035341/navigationbartitle-color-change-for-watchos-in-swiftui
+                
             }
+            
             .environment(\.managedObjectContext, container.viewContext)
         }
 

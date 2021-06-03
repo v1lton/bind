@@ -7,11 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
+		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
 		0E07F8FA2667A3E500BFBF2B /* SuccessMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */; };
 		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
 		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
 		0EE5F4C42666743500523497 /* DetailedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4C32666743500523497 /* DetailedDataView.swift */; };
 		1748B70526650E5100E91484 /* InicialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748B70426650E5100E91484 /* InicialView.swift */; };
+		17BED7F32668F2830047CFB5 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BED7F22668F2830047CFB5 /* BarChart.swift */; };
 		893F6F8C266524CB0035742A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F6F8B266524CB0035742A /* Extensions.swift */; };
 		895399D3266129830059203E /* bind WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 895399D2266129830059203E /* bind WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		895399D8266129860059203E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 895399D7266129860059203E /* Assets.xcassets */; };
@@ -91,11 +94,14 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
 		0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageView.swift; sourceTree = "<group>"; };
 		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
 		0EE5F4C32666743500523497 /* DetailedDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDataView.swift; sourceTree = "<group>"; };
 		1748B70426650E5100E91484 /* InicialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicialView.swift; sourceTree = "<group>"; };
+		17BED7F22668F2830047CFB5 /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		893F6F8B266524CB0035742A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		895399CE266129830059203E /* bind.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = bind.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		895399D2266129830059203E /* bind WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "bind WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -205,6 +211,7 @@
 				B43274542666668900EAA3C4 /* TemporaryAddHistory.swift */,
 				0EA3B0D3266523ED007F07C7 /* ActivityView.swift */,
 				0EE5F4BF266653C800523497 /* StatusModel.swift */,
+				17BED7F22668F2830047CFB5 /* BarChart.swift */,
 				0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */,
 				0EE5F4C32666743500523497 /* DetailedDataView.swift */,
 			);
@@ -453,6 +460,7 @@
 				1748B70526650E5100E91484 /* InicialView.swift in Sources */,
 				B4463591266528690000C1B8 /* HistoryView.swift in Sources */,
 				895399E4266129860059203E /* bindApp.swift in Sources */,
+				17BED7F32668F2830047CFB5 /* BarChart.swift in Sources */,
 				895399EA266129860059203E /* NotificationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -621,7 +629,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = SZDYT9A2D8;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "bind WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -649,7 +657,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = SZDYT9A2D8;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "bind WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -678,7 +686,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
 				MARKETING_VERSION = 2.0;
@@ -702,7 +710,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
 				MARKETING_VERSION = 2.0;
@@ -723,7 +731,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -753,7 +761,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				INFOPLIST_FILE = bindTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -776,7 +784,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				INFOPLIST_FILE = bindTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -797,7 +805,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				INFOPLIST_FILE = bindUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -818,7 +826,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = 2QC8C374PG;
 				INFOPLIST_FILE = bindUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

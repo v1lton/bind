@@ -14,40 +14,25 @@ struct InicialView: View {
     @State private var history = false
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 10){
-            Text("Bind")
-            Spacer()
-            Button(
-                action: {
-                    self.modal.toggle() //true
-                },
-                label: {
-                    Text("Humor")
-                }
-            )
-            .sheet(isPresented: $modal, content: {
-                HumorView(modal:self.$modal)
-            })
-            Button(
-                action: {
-                    self.addRecord.toggle() //true
-                },
-                label: {
-                    Text("Registrar")
-                }
-            )
-            .sheet(isPresented: $addRecord, content: {
-                TemporaryAddHistory(modal: self.$addRecord)
-            })
+        VStack{
+            
+            Text("Últimos 7 dias")
+                .font(.system(size: 10))
+                .foregroundColor(.white)
+                .frame(width: WKInterfaceDevice.current().screenBounds.width, alignment: .leading)
+                .padding(.leading,  WKInterfaceDevice.current().screenBounds.width*0.1)
+                .padding(.top,  WKInterfaceDevice.current().screenBounds.width*0.1)
+                
             
             Button(
                 action: {
                     self.history.toggle() //true
                 },
                 label: {
-                    Text("Histórico")
+                    BarChart(data: chartDataSet)
                 }
             )
+            .buttonStyle(PlainButtonStyle()) //colocar o button transparente, mostrando só o gráfico
             .sheet(isPresented: $history, content: {
                 HistoryView(modal: self.$history)
                     .toolbar(content: {
@@ -56,8 +41,45 @@ struct InicialView: View {
                             }
                         }
                     })
+                })
+           
+            
+            Spacer()
+            Button(
+                action: {
+                    self.modal.toggle() //true
+                },
+                label: {
+                    Text("Registrar")
+                }
+            )
+            .sheet(isPresented: $modal, content: {
+                HumorView(modal:self.$modal)
             })
+            
+//            Button(
+//                action: {
+//                    self.addRecord.toggle() //true
+//                },
+//                label: {
+//                    Text("Registrar")
+//                }
+//            )
+//            .sheet(isPresented: $addRecord, content: {
+//                TemporaryAddHistory(modal: self.$addRecord)
+//            })
+            
+//            Button(
+//                action: {
+//                    self.history.toggle() //true
+//                },
+//                label: {
+//                    Text("Histórico")
+//                }
+//            )
+//           
         }
+
     }
 }
 
