@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
 		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
+		0E07F8FA2667A3E500BFBF2B /* SuccessMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */; };
+		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
+		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
+		0EE5F4C42666743500523497 /* DetailedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4C32666743500523497 /* DetailedDataView.swift */; };
 		1748B70526650E5100E91484 /* InicialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748B70426650E5100E91484 /* InicialView.swift */; };
 		17BED7F32668F2830047CFB5 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BED7F22668F2830047CFB5 /* BarChart.swift */; };
 		893F6F8C266524CB0035742A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 893F6F8B266524CB0035742A /* Extensions.swift */; };
@@ -92,6 +96,10 @@
 /* Begin PBXFileReference section */
 		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
+		0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageView.swift; sourceTree = "<group>"; };
+		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
+		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
+		0EE5F4C32666743500523497 /* DetailedDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDataView.swift; sourceTree = "<group>"; };
 		1748B70426650E5100E91484 /* InicialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicialView.swift; sourceTree = "<group>"; };
 		17BED7F22668F2830047CFB5 /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
 		893F6F8B266524CB0035742A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -204,6 +212,8 @@
 				0EA3B0D3266523ED007F07C7 /* ActivityView.swift */,
 				0EE5F4BF266653C800523497 /* StatusModel.swift */,
 				17BED7F22668F2830047CFB5 /* BarChart.swift */,
+				0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */,
+				0EE5F4C32666743500523497 /* DetailedDataView.swift */,
 			);
 			path = "bind WatchKit Extension";
 			sourceTree = "<group>";
@@ -431,6 +441,7 @@
 			files = (
 				B4463563266506090000C1B8 /* Data.xcdatamodeld in Sources */,
 				895399E8266129860059203E /* NotificationController.swift in Sources */,
+				0EE5F4C42666743500523497 /* DetailedDataView.swift in Sources */,
 				0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */,
@@ -440,6 +451,7 @@
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				89DA193A26650532004B1E6D /* RecordingView.swift in Sources */,
 				893F6F8C266524CB0035742A /* Extensions.swift in Sources */,
+				0E07F8FA2667A3E500BFBF2B /* SuccessMessageView.swift in Sources */,
 				89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				B446358626650B340000C1B8 /* Persistence.swift in Sources */,

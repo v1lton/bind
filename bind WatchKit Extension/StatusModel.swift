@@ -13,6 +13,7 @@ struct StatusModel: View {
     @Binding var duration: String
     @Binding var bpm: String
     @Binding var calories: String
+    // adicionar variável para icone do humor
     // @Binding var iconStatus: String
     
     var body: some View {
