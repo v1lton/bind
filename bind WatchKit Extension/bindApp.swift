@@ -13,7 +13,8 @@ struct bindApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                InicialView()
+//                InicialView()
+                ActivityView(duration: Binding.constant(" "), bpm: Binding.constant(" "), calories: Binding.constant(" "))
             }
             .environment(\.managedObjectContext, container.viewContext)
         }

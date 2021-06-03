@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct ActivityView: View {
     
@@ -19,6 +20,8 @@ struct ActivityView: View {
     
     var body: some View {
         VStack {
+            
+            
             
             StatusModel(duration: $duration, bpm: $bpm, calories: $calories)
             
@@ -48,6 +51,14 @@ struct ActivityView: View {
                 .cornerRadius(25)
             }
         }
+    }
+    
+    func healthKitPermission() {
+        let healthStore = HKHealthStore()
+        let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)
+        print(heartRate)
+        let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)
+        let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)
     }
 }
 
