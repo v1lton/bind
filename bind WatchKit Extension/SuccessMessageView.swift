@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SuccessMensageView: View {
+struct SuccessMessageView: View {
     
     @State private var scale: CGFloat = 1
     @State var isAnimated: Bool = false
@@ -123,11 +123,11 @@ struct SuccessMensageView: View {
 
 struct SuccessMensageView_Previews: PreviewProvider {
     static var previews: some View {
-        SuccessMensageView()
+        SuccessMessageView()
             .previewDevice("Apple Watch Series 6 - 44mm")
-        SuccessMensageView()
+        SuccessMessageView()
             .previewDevice("Apple Watch Series 6 - 40mm")
-        SuccessMensageView()
+        SuccessMessageView()
             .previewDevice("Apple Watch Series 6 - 40mm")
     }
 }
