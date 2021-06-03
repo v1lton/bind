@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
-		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
 		0E07F8FA2667A3E500BFBF2B /* SuccessMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */; };
 		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
 		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
@@ -94,8 +92,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
-		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
 		0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageView.swift; sourceTree = "<group>"; };
 		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
@@ -629,7 +625,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "bind WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -657,7 +653,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "bind WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -686,7 +682,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
 				MARKETING_VERSION = 2.0;
@@ -710,7 +706,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				IBSC_MODULE = bind_WatchKit_Extension;
 				INFOPLIST_FILE = "bind WatchKit App/Info.plist";
 				MARKETING_VERSION = 2.0;
@@ -731,7 +727,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = D84M4LK87S;
 				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = academyufpe.bind;
 				PRODUCT_NAME = "$(TARGET_NAME)";
