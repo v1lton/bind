@@ -23,39 +23,21 @@ struct InicialView: View {
                 .padding(.leading,  WKInterfaceDevice.current().screenBounds.width*0.1)
                 .padding(.top,  WKInterfaceDevice.current().screenBounds.width*0.1)
                 
-            
-            Button(
-                action: {
-                    self.history.toggle() //true
-                },
+            NavigationLink(
+                destination: HistoryView(),
                 label: {
                     BarChart(data: chartDataSet)
-                }
-            )
-            .buttonStyle(PlainButtonStyle()) //colocar o button transparente, mostrando só o gráfico
-            .sheet(isPresented: $history, content: {
-                HistoryView(modal: self.$history)
-                    .toolbar(content: {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Close") { self.history.toggle()
-                            }
-                        }
-                    })
                 })
-           
-            
+                .buttonStyle(PlainButtonStyle())
+    
             Spacer()
-            Button(
-                action: {
-                    self.modal.toggle() //true
-                },
+            
+            NavigationLink(
+                destination:  HumorView(),
                 label: {
                     Text("Registrar")
-                }
-            )
-            .sheet(isPresented: $modal, content: {
-                HumorView(modal:self.$modal)
-            })
+                })
+            
                  
         }
 
