@@ -14,7 +14,7 @@ struct bindApp: App {
         WindowGroup {
             NavigationView {
 //                InicialView()
-                ActivityView(duration: Binding.constant(" "), bpm: Binding.constant(" "), calories: Binding.constant(" "))
+                HumorView(modal: Binding.constant(true))
             }
             .environment(\.managedObjectContext, container.viewContext)
         }

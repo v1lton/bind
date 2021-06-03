@@ -8,22 +8,12 @@
 import SwiftUI
 
 struct StatusModel: View {
-    
-//    @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: false)], animation: .easeIn) var history : FetchedResults<Record>
-//    
-//    @Environment(\.managedObjectContext) var context
-    
-    // Checar validade das variaveis com o que sera recebido
-    @Binding var duration: String
-    @Binding var bpm: String
-    @Binding var calories: String
-//    @Binding var date: String
-    // @Binding var iconStatus: String
+    @Binding var record: Record
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                Text(duration)
+                Text(record.activityRecord?.time ?? "-")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding(.top, 10)
@@ -32,16 +22,15 @@ struct StatusModel: View {
                     .frame(width: 75, height: 35, alignment: .leading)
             }.padding(.leading, 5)
             Spacer()
-            Image("circulo")
+            Image(record.image ?? "quadrado")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 40, height: 40, alignment: .center)
                 .padding(.trailing, 10)
         }
-        
         HStack {
             VStack(alignment: .leading) {
-                Text(bpm)
+                Text(record.activityRecord?.bpm ?? "-")
                     .font(.body)
                     .fontWeight(.semibold)
                 Text("bpm")
@@ -51,7 +40,7 @@ struct StatusModel: View {
             Spacer()
             
             VStack(alignment: .leading) {
-                Text(calories)
+                Text(record.activityRecord?.calories ?? "-")
                     .font(.body)
                     .fontWeight(.semibold)
                 Text("cal")
@@ -62,8 +51,8 @@ struct StatusModel: View {
     }
 }
 
-struct StatusView_Previews: PreviewProvider {
-    static var previews: some View {
-        StatusModel(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"))
-    }
-}
+//struct StatusView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        StatusModel(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"))
+//    }
+//}
