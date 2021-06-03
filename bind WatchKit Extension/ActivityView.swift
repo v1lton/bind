@@ -10,6 +10,10 @@ import HealthKit
 
 struct ActivityView: View {
     
+//    @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: false)], animation: .easeIn) var history : FetchedResults<Record>
+//    
+//    @Environment(\.managedObjectContext) var context
+    
     // Checar validade das variaveis com o que sera recebido
     @Binding var duration: String
     @Binding var bpm: String
@@ -20,9 +24,6 @@ struct ActivityView: View {
     
     var body: some View {
         VStack {
-            
-            
-            
             StatusModel(duration: $duration, bpm: $bpm, calories: $calories)
             
             Spacer()
@@ -50,15 +51,58 @@ struct ActivityView: View {
                 .background(Color("roxo").opacity(0.14))
                 .cornerRadius(25)
             }
+        }.onAppear() {
+            healthKitPermission()
         }
     }
     
     func healthKitPermission() {
         let healthStore = HKHealthStore()
-        let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)
-        print(heartRate)
-        let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)
-        let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)
+        let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
+        let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)!
+        let types = Set([heartRate, time, calories])
+        
+        healthStore.requestAuthorization(toShare: nil, read: types) {
+            (result, error) in
+            if let error = error {
+                print("Não foi possível requisitar autorização \(error)")
+                return
+            }
+            
+            guard result else {
+                print("Requisição de dados falhou!)")
+                return
+            }
+            
+            getData()
+        }
+    }
+    
+    func getData() {
+        getHeartRateInfos()
+    }
+    
+    func getHeartRateInfos() {
+        guard let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate) else {
+            print("Não fooi possível obter dados de frequência cardíaca")
+            return
+        }
+        
+        let predicate: NSPredicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeyHeartRateMotionContext, allowedValues: [2])
+        
+        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate, options: .discreteAverage) {(query, statistics, error) in
+            
+            guard let stats = statistics else {
+                print("Não foi possível calcular média de freq. card.")
+                return
+            }
+            
+            let average = statistics?.averageQuantity()
+            let unit = HKUnit(from: "count/min")
+            print(average?.doubleValue(for: unit))
+//            bpm = average?.doubleValue(for: unit)
+        }
     }
 }
 

@@ -9,10 +9,15 @@ import SwiftUI
 
 struct StatusModel: View {
     
+//    @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: false)], animation: .easeIn) var history : FetchedResults<Record>
+//    
+//    @Environment(\.managedObjectContext) var context
+    
     // Checar validade das variaveis com o que sera recebido
     @Binding var duration: String
     @Binding var bpm: String
     @Binding var calories: String
+//    @Binding var date: String
     // @Binding var iconStatus: String
     
     var body: some View {
