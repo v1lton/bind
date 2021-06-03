@@ -64,8 +64,7 @@ struct ActivityView: View {
         let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)!
         let types = Set([heartRate, time, calories])
         
-        healthStore.requestAuthorization(toShare: nil, read: types) {
-            (result, error) in
+        healthStore.requestAuthorization(toShare: nil, read: types) {(result, error) in
             if let error = error {
                 print("Não foi possível requisitar autorização \(error)")
                 return
@@ -90,9 +89,21 @@ struct ActivityView: View {
             return
         }
         
-        let predicate: NSPredicate = HKQuery.predicateForObjects(withMetadataKey: HKMetadataKeyHeartRateMotionContext, allowedValues: [2])
+        let calendar = NSCalendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.year, .month, .day], from: now)
+
+        guard let startDate = calendar.date(from: components) else {
+            fatalError("*** Unable to create the start date ***")
+        }
+         
+        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+            fatalError("*** Unable to create the end date ***")
+        }
+
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
         
-        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: predicate, options: .discreteAverage) {(_, statistics, _) in
+        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: today, options: .discreteAverage) {(_, statistics, _) in
             guard let stats = statistics else {
                 print("Não foi possível calcular média de freq. card.")
                 return
