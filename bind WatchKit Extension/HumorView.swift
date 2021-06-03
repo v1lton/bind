@@ -128,39 +128,41 @@ struct HumorView: View {
         
     }
     
+    //MARK: - GET HEALTH DATA
+   
     func healthKitPermission() {
         let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
         let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
         let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)!
         let types = Set([heartRate, time, calories])
-        
+
         healthStore.requestAuthorization(toShare: nil, read: types) {(result, error) in
             if let error = error {
                 print("Não foi possível requisitar autorização \(error)")
                 return
             }
-            
+
             guard result else {
                 print("Requisição de dados falhou!)")
                 return
             }
-            
+
             getData()
         }
     }
-    
+
     func getData() {
         getHeartRateInfos()
         //getTime
         //getCalories
     }
-    
+
     func getHeartRateInfos() {
         guard let heartRate = HKSampleType.quantityType(forIdentifier: .heartRate) else {
             print("Não foi possível obter dados de frequência cardíaca")
             return
         }
-        
+
         let calendar = NSCalendar.current
         let now = Date()
         let components = calendar.dateComponents([.year, .month, .day], from: now)
@@ -168,20 +170,20 @@ struct HumorView: View {
         guard let startDate = calendar.date(from: components) else {
             fatalError("*** Unable to create the start date ***")
         }
-         
+
         guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
             fatalError("*** Unable to create the end date ***")
         }
 
         let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
-        
+
         let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: today, options: .discreteAverage) {(_, statistics, _) in
             guard let stats = statistics else {
                 print("Não foi possível calcular média de freq. card.")
                 addNewRegister()
                 return
             }
-            
+
             let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
             print(average?.doubleValue(for: unit) ?? 0.0)
@@ -191,9 +193,55 @@ struct HumorView: View {
                 addNewRegister()
             }
         }
+
+        healthStore.execute(query)
+    }
+    
+    func getTimeInfos() {
+        guard let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime) else {
+            print("Não foi possível obter dados de tempo de atividade")
+            return
+        }
+
+        let calendar = NSCalendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.year, .month, .day], from: now)
+
+        guard let startDate = calendar.date(from: components) else {
+            fatalError("*** Unable to create the start date ***")
+        }
+
+        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+            fatalError("*** Unable to create the end date ***")
+        }
+
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+        
+        
+        let query = HKSampleQuery(sampleType: time, predicate: today, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) {
+            query, results, error in
+            
+            guard let samples = results as? [HKQuantitySample] else {
+                print("Não foi possível obter dados de tempo de atividade")
+                return
+            }
+            
+            for sample in samples {
+               print(sample)
+            }
+            
+            // The results come back on an anonymous background queue.
+            // Dispatch to the main queue before modifying the UI.
+            
+            DispatchQueue.main.async {
+                // Update the UI here.
+            }
+        }
         
         healthStore.execute(query)
     }
+    
+    //MARK: - NEW REGISTER
     
     func addNewRegister(){
         formattedDate = formatter.string(from: date)
