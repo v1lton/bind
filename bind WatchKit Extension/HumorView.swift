@@ -169,11 +169,11 @@ struct HumorView: View {
             fatalError("*** Unable to create the start date ***")
         }
          
-//        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
-//            fatalError("*** Unable to create the end date ***")
-//        }
+        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+            fatalError("*** Unable to create the end date ***")
+        }
 
-        let today = HKQuery.predicateForSamples(withStart: startDate, end: startDate, options: [])
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
         
         let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: today, options: .discreteAverage) {(_, statistics, _) in
             guard let stats = statistics else {
