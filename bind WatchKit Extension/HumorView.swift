@@ -12,7 +12,6 @@ struct HumorView: View {
     
     @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: false)], animation: .easeIn) var history : FetchedResults<Record>
     
-    @Environment(\.presentationMode) var presentation
     @Environment(\.managedObjectContext) var context
     
     @State var humor: String = ""
@@ -31,8 +30,7 @@ struct HumorView: View {
     
     private let healthStore = HKHealthStore()
     
-    init(modal: Binding<Bool>) {
-        _modal = modal
+    init() {
         date = Date()
         formatter = DateFormatter()
         formatter.dateFormat = "dd/MM"
@@ -54,11 +52,11 @@ struct HumorView: View {
                         humor = "bem"
                         cor = "verde"
                         image = "circulo"
-                        healthKitPermission()
+                       // healthKitPermission()
                     },
                     label: {
                         NavigationLink(
-                            destination:  ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xx")),
+                            destination:  ActivityView(record: $newRecord),
                             label: {
                                 
                                 HStack{
@@ -83,7 +81,7 @@ struct HumorView: View {
                     },
                     label: {
                         NavigationLink(
-                            destination: ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xx")),
+                            destination: ActivityView(record: $newRecord),
                             label: {
                                 HStack{
                                     Image("quadrado").resizable().aspectRatio(contentMode: .fill)
@@ -98,17 +96,17 @@ struct HumorView: View {
                             .cornerRadius(25)
                     }) .buttonStyle(PlainButtonStyle())
                 
-                
                 Button(
                     action: {
                         humor = "pra baixo"
                         cor = "ciano"
                         image = "triangulo"
                         healthKitPermission()
+                        addNewRegister()
                     },
                     label: {
                         NavigationLink(
-                            destination: ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xx")),
+                            destination: ActivityView(record: $newRecord),
                             label: {
                                 HStack{
                                     Image("triangulo").resizable().aspectRatio(contentMode: .fill)
@@ -193,9 +191,9 @@ struct HumorView: View {
             let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
             
-            DispatchQueue.main.async {
-                addNewRegister()
-            }
+//            DispatchQueue.main.async {
+//                addNewRegister()
+//            }
             
             bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
         }
@@ -284,8 +282,6 @@ struct HumorView: View {
         } catch {
             print(error.localizedDescription)
         }
-      
-        activityView.toggle()
     }
     
 }

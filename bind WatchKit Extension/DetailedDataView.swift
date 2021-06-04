@@ -10,23 +10,18 @@ import SwiftUI
 struct DetailedDataView: View {
     
     // Checar validade das variaveis com o que sera recebido
-    @Binding var duration: String
-    @Binding var bpm: String
-    @Binding var calories: String
-    @Binding var data: String
-    @Binding var cor: Color
-    //@Binding var iconStatus: String
+    @Binding var record: Record
     
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
-                Text(data)
+                Text(record.date ?? "-")
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding(.leading, 5)
-                    .foregroundColor(cor)
+                    .foregroundColor(Color(record.cor ?? "cinza"))
                 
-                StatusModel(duration: $duration, bpm: $bpm, calories: $calories).padding(.top, -5) //adicionar variável para icone do humor
+                StatusModel(record: $record) //adicionar variável para icone do humor
                 
                 Button(action: {}) {
                     Image(systemName:"play")
@@ -41,16 +36,5 @@ struct DetailedDataView: View {
                 
             }.padding(.horizontal)
         }
-    }
-}
-
-struct DetailedDataView_Previews: PreviewProvider {
-    static var previews: some View {
-        DetailedDataView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), data: Binding.constant("XX/XX"), cor: Binding.constant(Color("cinza")))
-            .previewDevice("Apple Watch Series 5 - 44mm")
-        DetailedDataView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), data: Binding.constant("XX/XX"), cor: Binding.constant(Color("cinza")))
-            .previewDevice("Apple Watch Series 6 - 40mm")
-        DetailedDataView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), data: Binding.constant("XX/XX"), cor: Binding.constant(Color("cinza")))
-            .previewDevice("Apple Watch Series 3 - 38mm")
     }
 }

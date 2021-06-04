@@ -35,9 +35,6 @@ struct ActivityView: View {
                     .cornerRadius(25)
                     .buttonStyle(PlainButtonStyle())
                 
-
-
-                
                 NavigationLink(
                     destination:
                         SuccessMessageView()
