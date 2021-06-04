@@ -6,19 +6,17 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct ActivityView: View {
     
     // Checar validade das variaveis com o que sera recebido
-    @Binding var duration: String
-    @Binding var bpm: String
-    @Binding var calories: String
-
+    @Binding var record: Record
+    
     var body: some View {
         VStack {
-            
-            StatusModel(duration: $duration, bpm: $bpm, calories: $calories) //adicionar variável para icone do humor
-            
+            StatusModel(record: $record)
+
             Spacer()
             
             HStack {
@@ -80,15 +78,3 @@ struct ActivityView: View {
         }
     }
 }
-
-
-//struct ActivityView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), modalHumorToActivy: .constant(true))
-//            .previewDevice("Apple Watch Series 5 - 44mm")
-//        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), modalHumorToActivy: .constant(true))
-//            .previewDevice("Apple Watch Series 6 - 40mm")
-//        ActivityView(duration: Binding.constant("xx"), bpm: Binding.constant("xx"), calories: Binding.constant("xxxx"), modalHumorToActivy: .constant(true))
-//            .previewDevice("Apple Watch Series 3 - 38mm")
-//    }
-//}

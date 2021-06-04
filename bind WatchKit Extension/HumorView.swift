@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import HealthKit
 
 struct HumorView: View {
     
@@ -17,11 +18,21 @@ struct HumorView: View {
     @State var humor: String = ""
     @State var cor: String = ""
     @State var image: String = ""
+    @State var duration: String = "-"
+    @State var bpm: String = "-"
+    @State var calories: String = "-"
+    @State var formattedDate: String = ""
+    @State var newRecord = Record()
     
     let date: Date
     let formatter: DateFormatter
     
-    init() {
+    @State var activityView: Bool = false
+    
+    private let healthStore = HKHealthStore()
+    
+    init(modal: Binding<Bool>) {
+        _modal = modal
         date = Date()
         formatter = DateFormatter()
         formatter.dateFormat = "dd/MM"
@@ -43,7 +54,7 @@ struct HumorView: View {
                         humor = "bem"
                         cor = "verde"
                         image = "circulo"
-                        addNewRegister()
+                        healthKitPermission()
                     },
                     label: {
                         NavigationLink(
@@ -68,7 +79,7 @@ struct HumorView: View {
                         humor = "normal"
                         cor = "cinza"
                         image = "quadrado"
-                        addNewRegister()
+                        healthKitPermission()
                     },
                     label: {
                         NavigationLink(
@@ -93,7 +104,7 @@ struct HumorView: View {
                         humor = "pra baixo"
                         cor = "ciano"
                         image = "triangulo"
-                        addNewRegister()
+                        healthKitPermission()
                     },
                     label: {
                         NavigationLink(
@@ -118,21 +129,151 @@ struct HumorView: View {
             .padding()
             
         }
+        .sheet(isPresented: $activityView, content: {
+            ActivityView(record: $newRecord)
+        })
         
     }
     
+    //MARK: - GET HEALTH DATA
+    
+    func healthKitPermission() {
+        let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
+        let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
+        let calories = HKObjectType.quantityType(forIdentifier: .dietaryEnergyConsumed)!
+        let types = Set([heartRate, time, calories])
+        
+        healthStore.requestAuthorization(toShare: nil, read: types) {(result, error) in
+            if let error = error {
+                print("Não foi possível requisitar autorização \(error)")
+                return
+            }
+            
+            guard result else {
+                print("Requisição de dados falhou!)")
+                return
+            }
+            
+            getData()
+        }
+    }
+    
+    func getData() {
+        getHeartRateInfos()
+        getTimeInfo()
+    }
+    
+    func getHeartRateInfos() {
+        guard let heartRate = HKSampleType.quantityType(forIdentifier: .heartRate) else {
+            print("Não foi possível obter dados de frequência cardíaca")
+            return
+        }
+        
+        let calendar = NSCalendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.year, .month, .day], from: now)
+        
+        guard let startDate = calendar.date(from: components) else {
+            fatalError("*** Unable to create the start date ***")
+        }
+        
+        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+            fatalError("*** Unable to create the end date ***")
+        }
+        
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+        
+        let query = HKStatisticsQuery(quantityType: heartRate, quantitySamplePredicate: today, options: .discreteAverage) {(_, statistics, _) in
+            guard let stats = statistics else {
+                print("Não foi possível calcular média de freq. card.")
+                addNewRegister()
+                return
+            }
+            
+            let average = stats.averageQuantity()
+            let unit = HKUnit(from: "count/min")
+            
+            DispatchQueue.main.async {
+                addNewRegister()
+            }
+            
+            bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
+        }
+        
+        healthStore.execute(query)
+    }
+    
+    func getTimeInfo() {
+        guard let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime) else {
+            print("Não foi possível obter dados de tempo de atividade")
+            return
+        }
+        
+        let calendar = NSCalendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.year, .month, .day], from: now)
+        
+        guard let startDate = calendar.date(from: components) else {
+            fatalError("*** Unable to create the start date ***")
+        }
+        
+        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+            fatalError("*** Unable to create the end date ***")
+        }
+        
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+        
+        let query = HKStatisticsQuery(quantityType: time, quantitySamplePredicate: today, options: .cumulativeSum) {(_, statistics, _) in
+            guard let stats = statistics else {
+                print("Não foi possível calcular o tempo de atividade")
+                addNewRegister()
+                return
+            }
+            
+            let sum = stats.sumQuantity()
+            let unit = HKUnit(from: "min")
+            
+            duration = NSString(format: "%.2f", sum?.doubleValue(for: unit) ?? "-") as String
+        }
+        healthStore.execute(query)
+    }
+    
+    //MARK: - NEW REGISTER
+    
     func addNewRegister(){
-        if history.first?.date == formatter.string(from: date) {
+        formattedDate = formatter.string(from: date)
+        
+        if history.first?.date == formattedDate {
+            
             history.first?.humor = self.humor
             history.first?.cor = self.cor
             history.first?.image = self.image
+            
+            history.first?.activityRecord?.bpm = self.bpm
+            history.first?.activityRecord?.calories = self.calories
+            history.first?.activityRecord?.time = self.duration
+            
+            newRecord = history.first ?? Record()
+            print(newRecord)
+            
         } else {
             let newRegister = Record(context: context)
+            let newActivity = Activity(context: context)
+            
             newRegister.date = formatter.string(from: date)
             
             newRegister.humor = self.humor
             newRegister.cor = self.cor
             newRegister.image = self.image
+            
+            newActivity.bpm = self.bpm
+            newActivity.calories = self.calories
+            newActivity.time = self.duration
+            
+            newRegister.activityRecord = newActivity
+            
+            newRecord = newRegister
+            
         }
         
         do {
@@ -143,19 +284,8 @@ struct HumorView: View {
         } catch {
             print(error.localizedDescription)
         }
-        
-//        presentation.wrappedValue.dismiss() //aqui achei
+      
+        activityView.toggle()
     }
     
 }
-
-//struct ContentView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        HumorView(modal: .constant(true))
-//            .previewDevice("Apple Watch Series 5 - 44mm")
-//        HumorView(modal: .constant(true))
-//            .previewDevice("Apple Watch Series 6 - 40mm")
-//        HumorView(modal: .constant(true))
-//            .previewDevice("Apple Watch Series 3 - 38mm")
-//    }
-//}
