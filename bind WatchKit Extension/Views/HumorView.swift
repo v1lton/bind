@@ -26,7 +26,7 @@ struct HumorView: View {
     let date: Date
     let formatter: DateFormatter
     
-    @State var activityView: Bool = false
+    @State var activityView: String? = nil
     
     private let healthStore = HKHealthStore()
     
@@ -38,39 +38,38 @@ struct HumorView: View {
     
     var body: some View {
         ScrollView{
+            NavigationLink (destination: ActivityView(record: $newRecord), tag: "toActivity", selection: $activityView) {
+                EmptyView()
+            }
+            .buttonStyle(PlainButtonStyle())
             
             VStack{
-                
                 Text("Como você se sentiu hoje?")
                     .fontWeight(.semibold)
                     .fixedSize(horizontal: false, vertical: true)
                     .multilineTextAlignment(.center)
                     .frame(width: WKInterfaceDevice.current().screenBounds.width*0.7, alignment: .center)
                 
+                
                 Button(
                     action: {
                         humor = "bem"
                         cor = "verde"
                         image = "circulo"
-                       // healthKitPermission()
+                        healthKitPermission()
                     },
                     label: {
-                        NavigationLink(
-                            destination:  ActivityView(record: $newRecord),
-                            label: {
-                                
-                                HStack{
-                                    Image("circulo").resizable().aspectRatio(contentMode: .fill)
-                                        .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
-                                    Text("Bem")
-                                        .padding(.leading, 20)
-                                }
-                                .padding(.leading, -30)
-                            })
-                        .foregroundColor(Color("verde"))
-                        .background(Color("verde").opacity(0.14))
-                        .cornerRadius(25)
-                    })   .buttonStyle(PlainButtonStyle())
+                        HStack{
+                            Image("circulo").resizable().aspectRatio(contentMode: .fill)
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
+                            Text("Bem")
+                                .padding(.leading, 20)
+                        }
+                        .padding(.leading, -30)
+                    })
+                    .foregroundColor(Color("verde"))
+                    .background(Color("verde").opacity(0.14))
+                    .cornerRadius(25)
                 
                 Button(
                     action: {
@@ -80,21 +79,18 @@ struct HumorView: View {
                         healthKitPermission()
                     },
                     label: {
-                        NavigationLink(
-                            destination: ActivityView(record: $newRecord),
-                            label: {
-                                HStack{
-                                    Image("quadrado").resizable().aspectRatio(contentMode: .fill)
-                                        .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
-                                    Text("Normal")
-                                        .padding(.leading, 20)
-                                }
-                                .padding(.leading, -15)
-                            })
-                            .foregroundColor(Color("cinza"))
-                            .background(Color("cinza").opacity(0.14))
-                            .cornerRadius(25)
-                    }) .buttonStyle(PlainButtonStyle())
+                        HStack{
+                            Image("quadrado").resizable().aspectRatio(contentMode: .fill)
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width*0.07, height: WKInterfaceDevice.current().screenBounds.height*0.07, alignment: .center)
+                            Text("Normal")
+                                .padding(.leading, 20)
+                        }
+                        .padding(.leading, -15)
+                    })
+                    .foregroundColor(Color("cinza"))
+                    .background(Color("cinza").opacity(0.14))
+                    .cornerRadius(25)
+                
                 
                 Button(
                     action: {
@@ -102,34 +98,25 @@ struct HumorView: View {
                         cor = "ciano"
                         image = "triangulo"
                         healthKitPermission()
-                        addNewRegister()
                     },
                     label: {
-                        NavigationLink(
-                            destination: ActivityView(record: $newRecord),
-                            label: {
-                                HStack{
-                                    Image("triangulo").resizable().aspectRatio(contentMode: .fill)
-                                        .frame(width: WKInterfaceDevice.current().screenBounds.width*0.1, height: WKInterfaceDevice.current().screenBounds.height*0.11, alignment: .center)
-                                        .padding(.leading, WKInterfaceDevice.current().screenBounds.width*0.15)
-                                    Text("Para baixo")
-                                        .padding(.leading, WKInterfaceDevice.current().screenBounds.width*0.09)
-                                }
-                                .padding(.leading, -WKInterfaceDevice.current().screenBounds.width*0.13)
-                            })
-                            
-                            .foregroundColor(Color("ciano"))
-                            .background(Color("ciano").opacity(0.15))
-                            .cornerRadius(25)
-                            }) .buttonStyle(PlainButtonStyle())
+                        HStack{
+                            Image("triangulo").resizable().aspectRatio(contentMode: .fill)
+                                .frame(width: WKInterfaceDevice.current().screenBounds.width*0.1, height: WKInterfaceDevice.current().screenBounds.height*0.11, alignment: .center)
+                                .padding(.leading, WKInterfaceDevice.current().screenBounds.width*0.15)
+                            Text("Para baixo")
+                                .padding(.leading, WKInterfaceDevice.current().screenBounds.width*0.09)
+                        }
+                        .padding(.leading, -WKInterfaceDevice.current().screenBounds.width*0.13)
+                    })
+                    
+                    .foregroundColor(Color("ciano"))
+                    .background(Color("ciano").opacity(0.15))
+                    .cornerRadius(25)
             }
             .frame(width: .infinity , height:  .infinity, alignment: .center)
             .padding()
-            
         }
-        .sheet(isPresented: $activityView, content: {
-            ActivityView(record: $newRecord)
-        })
         
     }
     
@@ -191,9 +178,9 @@ struct HumorView: View {
             let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
             
-//            DispatchQueue.main.async {
-//                addNewRegister()
-//            }
+            //            DispatchQueue.main.async {
+            //                addNewRegister()
+            //            }
             
             bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
         }
@@ -282,6 +269,8 @@ struct HumorView: View {
         } catch {
             print(error.localizedDescription)
         }
+        
+        self.activityView = "toActivity"
     }
     
 }

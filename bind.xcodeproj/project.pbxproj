@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0E07F8FA2667A3E500BFBF2B /* SuccessMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */; };
 		0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EA3B0D3266523ED007F07C7 /* ActivityView.swift */; };
 		0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4BF266653C800523497 /* StatusModel.swift */; };
-		0E07F8FA2667A3E500BFBF2B /* SuccessMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */; };
 		0EE5F4C42666743500523497 /* DetailedDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EE5F4C32666743500523497 /* DetailedDataView.swift */; };
 		1748B70526650E5100E91484 /* InicialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1748B70426650E5100E91484 /* InicialView.swift */; };
 		17BED7F32668F2830047CFB5 /* BarChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BED7F22668F2830047CFB5 /* BarChart.swift */; };
@@ -28,7 +28,6 @@
 		89539A08266129870059203E /* bindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89539A07266129870059203E /* bindUITests.swift */; };
 		89DA193A26650532004B1E6D /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193926650532004B1E6D /* RecordingView.swift */; };
 		89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193B26651F76004B1E6D /* RecordingViewModel.swift */; };
-		B43274552666668900EAA3C4 /* TemporaryAddHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43274542666668900EAA3C4 /* TemporaryAddHistory.swift */; };
 		B4463563266506090000C1B8 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4463561266506090000C1B8 /* Data.xcdatamodeld */; };
 		B446358626650B340000C1B8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446358526650B340000C1B8 /* Persistence.swift */; };
 		B4463591266528690000C1B8 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446358F266528690000C1B8 /* HistoryView.swift */; };
@@ -93,9 +92,9 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageView.swift; sourceTree = "<group>"; };
 		0EA3B0D3266523ED007F07C7 /* ActivityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityView.swift; sourceTree = "<group>"; };
 		0EE5F4BF266653C800523497 /* StatusModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusModel.swift; sourceTree = "<group>"; };
-		0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuccessMessageView.swift; sourceTree = "<group>"; };
 		0EE5F4C32666743500523497 /* DetailedDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDataView.swift; sourceTree = "<group>"; };
 		1748B70426650E5100E91484 /* InicialView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InicialView.swift; sourceTree = "<group>"; };
 		17BED7F22668F2830047CFB5 /* BarChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChart.swift; sourceTree = "<group>"; };
@@ -122,7 +121,6 @@
 		89539A09266129870059203E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89DA193926650532004B1E6D /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		89DA193B26651F76004B1E6D /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
-		B43274542666668900EAA3C4 /* TemporaryAddHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemporaryAddHistory.swift; sourceTree = "<group>"; };
 		B4463562266506090000C1B8 /* Record.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Record.xcdatamodel; sourceTree = "<group>"; };
 		B446358526650B340000C1B8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B446358F266528690000C1B8 /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -194,28 +192,19 @@
 		895399E2266129860059203E /* bind WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				B49055E9266A45FF00CB76A4 /* ViewModels */,
+				B49055E8266A45F300CB76A4 /* Models */,
+				B49055E7266A45D200CB76A4 /* Views */,
 				B49055E32668F70F00CB76A4 /* bind WatchKit Extension.entitlements */,
 				895399E3266129860059203E /* bindApp.swift */,
-				89DA193926650532004B1E6D /* RecordingView.swift */,
-				89DA193B26651F76004B1E6D /* RecordingViewModel.swift */,
-				895399E5266129860059203E /* HumorView.swift */,
-				895399E7266129860059203E /* NotificationController.swift */,
 				895399E9266129860059203E /* NotificationView.swift */,
-				B4463590266528690000C1B8 /* HistoryButtonModel.swift */,
-				B446358F266528690000C1B8 /* HistoryView.swift */,
+				895399E7266129860059203E /* NotificationController.swift */,
 				893F6F8B266524CB0035742A /* Extensions.swift */,
 				895399ED266129870059203E /* Assets.xcassets */,
 				895399F2266129870059203E /* Info.plist */,
 				895399F3266129870059203E /* PushNotificationPayload.apns */,
 				895399EB266129860059203E /* ComplicationController.swift */,
 				895399EF266129870059203E /* Preview Content */,
-				1748B70426650E5100E91484 /* InicialView.swift */,
-				B43274542666668900EAA3C4 /* TemporaryAddHistory.swift */,
-				0EA3B0D3266523ED007F07C7 /* ActivityView.swift */,
-				0EE5F4BF266653C800523497 /* StatusModel.swift */,
-				17BED7F22668F2830047CFB5 /* BarChart.swift */,
-				0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */,
-				0EE5F4C32666743500523497 /* DetailedDataView.swift */,
 			);
 			path = "bind WatchKit Extension";
 			sourceTree = "<group>";
@@ -261,6 +250,38 @@
 				B49055E52668F70F00CB76A4 /* HealthKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B49055E7266A45D200CB76A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				89DA193926650532004B1E6D /* RecordingView.swift */,
+				895399E5266129860059203E /* HumorView.swift */,
+				B446358F266528690000C1B8 /* HistoryView.swift */,
+				1748B70426650E5100E91484 /* InicialView.swift */,
+				0EA3B0D3266523ED007F07C7 /* ActivityView.swift */,
+				0E07F8F92667A3E500BFBF2B /* SuccessMessageView.swift */,
+				0EE5F4C32666743500523497 /* DetailedDataView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B49055E8266A45F300CB76A4 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0EE5F4BF266653C800523497 /* StatusModel.swift */,
+				B4463590266528690000C1B8 /* HistoryButtonModel.swift */,
+				17BED7F22668F2830047CFB5 /* BarChart.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		B49055E9266A45FF00CB76A4 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				89DA193B26651F76004B1E6D /* RecordingViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -465,7 +486,6 @@
 				89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				B446358626650B340000C1B8 /* Persistence.swift in Sources */,
-				B43274552666668900EAA3C4 /* TemporaryAddHistory.swift in Sources */,
 				895399EC266129860059203E /* ComplicationController.swift in Sources */,
 				1748B70526650E5100E91484 /* InicialView.swift in Sources */,
 				B4463591266528690000C1B8 /* HistoryView.swift in Sources */,

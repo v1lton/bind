@@ -37,7 +37,15 @@ struct HistoryView: View {
                                 DetailedDataView(record: self.$record)
                                     .toolbar(content: {
                                         ToolbarItem(placement: .cancellationAction) {
-                                            Button("Fechar") { self.details.toggle() }
+                                            HStack {
+                                                Image(systemName: "xmark.circle.fill")
+                                                    .foregroundColor(Color("roxo"))
+                                                
+                                                Button("   ") {
+                                                    self.details.toggle()
+                                                }
+                                            }
+                                            
                                         }
                                     })
                             }

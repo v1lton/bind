@@ -32,26 +32,36 @@ struct StatusModel: View {
                 .padding(.trailing, 10)
                 .padding(.top, 10)
         }
-        HStack {
-            VStack(alignment: .leading) {
-                Text(record.activityRecord?.bpm ?? "-")
-                    .font(.body)
-                    .fontWeight(.semibold)
-                Text("bpm")
-                    .font(.footnote)
-            }
-            
-            Spacer()
-            
-            VStack(alignment: .leading) {
-                Text(record.activityRecord?.calories ?? "-")
-                    .font(.body)
-                    .fontWeight(.semibold)
-                Text("cal")
-                    .font(.footnote)
-            }
-            
-        }.padding()
+        
+        VStack(alignment: .leading) {
+            Text(record.activityRecord?.bpm ?? "-")
+                .font(.body)
+                .fontWeight(.semibold)
+            Text("bpm")
+                .font(.footnote)
+        }
+        .padding(.leading, 5)
+        .padding(.bottom, 5)
+//        HStack {
+//            VStack(alignment: .leading) {
+//                Text(record.activityRecord?.bpm ?? "-")
+//                    .font(.body)
+//                    .fontWeight(.semibold)
+//                Text("bpm")
+//                    .font(.footnote)
+//            }
+//
+//            Spacer()
+//
+//            VStack(alignment: .leading) {
+//                Text(record.activityRecord?.calories ?? "-")
+//                    .font(.body)
+//                    .fontWeight(.semibold)
+//                Text("cal")
+//                    .font(.footnote)
+//            }
+//
+//        }.padding()
     }
 }
 
