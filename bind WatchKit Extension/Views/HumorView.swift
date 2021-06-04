@@ -178,9 +178,9 @@ struct HumorView: View {
             let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
             
-            //            DispatchQueue.main.async {
-            //                addNewRegister()
-            //            }
+            DispatchQueue.main.async {
+                addNewRegister()
+            }
             
             bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
         }
