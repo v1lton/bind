@@ -153,7 +153,7 @@ struct HumorView: View {
 
     func getData() {
         getHeartRateInfos()
-        //getTime
+        getTime()
         //getCalories
     }
 
@@ -218,26 +218,42 @@ struct HumorView: View {
         let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
         
         
-        let query = HKSampleQuery(sampleType: time, predicate: today, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) {
-            query, results, error in
-            
-            guard let samples = results as? [HKQuantitySample] else {
-                print("Não foi possível obter dados de tempo de atividade")
+//        let query = HKSampleQuery(sampleType: time, predicate: today, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) {
+//            query, results, error in
+//
+//            guard let samples = results as? [HKQuantitySample] else {
+//                print("Não foi possível obter dados de tempo de atividade")
+//                return
+//            }
+//
+//            for sample in samples {
+//               print(sample)
+//            }
+//
+//            // The results come back on an anonymous background queue.
+//            // Dispatch to the main queue before modifying the UI.
+//
+//            DispatchQueue.main.async {
+//                // Update the UI here.
+//            }
+//        }
+        
+        let query = HKStatisticsQuery(quantityType: time, quantitySamplePredicate: today, options: .cumulativeSum) {(_, statistics, _) in
+            guard let stats = statistics else {
+                print("Não foi possível calcular média de freq. card.")
+//                addNewRegister()
                 return
             }
-            
-            for sample in samples {
-               print(sample)
-            }
-            
-            // The results come back on an anonymous background queue.
-            // Dispatch to the main queue before modifying the UI.
-            
-            DispatchQueue.main.async {
-                // Update the UI here.
-            }
+
+            let sum = stats.sumQuantity()
+            let unit = HKUnit(from: "min")
+            print(sum?.doubleValue(for: unit) ?? 0.0)
+
+//            DispatchQueue.main.async {
+//                bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
+//                addNewRegister()
+//            }
         }
-        
         healthStore.execute(query)
     }
     
