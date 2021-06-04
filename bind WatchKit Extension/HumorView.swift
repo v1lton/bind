@@ -52,7 +52,7 @@ struct HumorView: View {
                         humor = "bem"
                         cor = "verde"
                         image = "circulo"
-                       // healthKitPermission()
+                        self.addNewRegister()
                     },
                     label: {
                         NavigationLink(
@@ -77,7 +77,7 @@ struct HumorView: View {
                         humor = "normal"
                         cor = "cinza"
                         image = "quadrado"
-                        healthKitPermission()
+                        self.addNewRegister()
                     },
                     label: {
                         NavigationLink(
@@ -101,8 +101,7 @@ struct HumorView: View {
                         humor = "pra baixo"
                         cor = "ciano"
                         image = "triangulo"
-                        healthKitPermission()
-                        addNewRegister()
+                        self.addNewRegister()
                     },
                     label: {
                         NavigationLink(
@@ -125,7 +124,12 @@ struct HumorView: View {
             }
             .frame(width: .infinity , height:  .infinity, alignment: .center)
             .padding()
-            
+            .onAppear(perform: {
+                DispatchQueue.main.async {
+                    self.healthKitPermission()
+                }
+            })
+
         }
         .sheet(isPresented: $activityView, content: {
             ActivityView(record: $newRecord)
@@ -190,10 +194,6 @@ struct HumorView: View {
             
             let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
-            
-//            DispatchQueue.main.async {
-//                addNewRegister()
-//            }
             
             bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
         }
