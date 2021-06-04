@@ -14,50 +14,33 @@ struct InicialView: View {
     @State private var history = false
     
     var body: some View {
-        VStack (alignment: .leading, spacing: 10){
-            Text("Bind")
-            Spacer()
-            Button(
-                action: {
-                    self.modal.toggle() //true
-                },
+        VStack{
+            
+            Text("Últimos 7 dias")
+                .font(.system(size: 10))
+                .foregroundColor(.white)
+                .frame(width: WKInterfaceDevice.current().screenBounds.width, alignment: .leading)
+                .padding(.leading,  WKInterfaceDevice.current().screenBounds.width*0.1)
+                .padding(.top,  WKInterfaceDevice.current().screenBounds.width*0.1)
+                
+            NavigationLink(
+                destination: HistoryView(),
                 label: {
-                    Text("Humor")
-                }
-            )
-            .sheet(isPresented: $modal, content: {
-                HumorView(modal:self.$modal)
-            })
-            Button(
-                action: {
-                    self.addRecord.toggle() //true
-                },
+                    BarChart(data: chartDataSet)
+                })
+                .buttonStyle(PlainButtonStyle())
+    
+            Spacer()
+            
+            NavigationLink(
+                destination:  HumorView(),
                 label: {
                     Text("Registrar")
-                }
-            )
-            .sheet(isPresented: $addRecord, content: {
-                TemporaryAddHistory(modal: self.$addRecord)
-            })
+                })
             
-            Button(
-                action: {
-                    self.history.toggle() //true
-                },
-                label: {
-                    Text("Histórico")
-                }
-            )
-            .sheet(isPresented: $history, content: {
-                HistoryView(modal: self.$history)
-                    .toolbar(content: {
-                        ToolbarItem(placement: .cancellationAction) {
-                            Button("Close") { self.history.toggle()
-                            }
-                        }
-                    })
-            })
+                 
         }
+
     }
 }
 

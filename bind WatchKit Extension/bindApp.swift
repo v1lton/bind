@@ -9,13 +9,18 @@ import SwiftUI
 
 @main
 struct bindApp: App {
+    
+    @State private var navigationID = UUID()
     let container = PersistenceController.shared.container
+    
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                InicialView()
-//                HumorView(modal: Binding.constant(true))
-            }
+                InicialView().navigationBarTitle("bind")                
+            }.id(navigationID)
+            .onReceive(NotificationCenter.default.publisher(for: Notification.Name("successToInicialView"))) { output in
+                        navigationID = UUID()
+                    }
             .environment(\.managedObjectContext, container.viewContext)
         }
 

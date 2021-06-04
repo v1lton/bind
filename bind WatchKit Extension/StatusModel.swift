@@ -20,13 +20,17 @@ struct StatusModel: View {
                 Text("horas de \natividade")
                     .font(.footnote)
                     .frame(width: 75, height: 35, alignment: .leading)
-            }.padding(.leading, 5)
+            }
+            .padding(.leading, 5)
+            
             Spacer()
+          
             Image(record.image ?? "quadrado")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .frame(width: 40, height: 40, alignment: .center)
                 .padding(.trailing, 10)
+                .padding(.top, 10)
         }
         HStack {
             VStack(alignment: .leading) {
