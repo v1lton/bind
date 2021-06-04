@@ -57,7 +57,6 @@ struct HumorView: View {
                         cor = "verde"
                         image = "circulo"
                         healthKitPermission()
-//                        addNewRegister()
                     },
                     label: {
                         HStack{
@@ -78,7 +77,6 @@ struct HumorView: View {
                         cor = "cinza"
                         image = "quadrado"
                         healthKitPermission()
-//                        addNewRegister()
                     },
                     label: {
                         HStack{
@@ -100,8 +98,6 @@ struct HumorView: View {
                         cor = "ciano"
                         image = "triangulo"
                         healthKitPermission()
-
-//                        addNewRegister()
                     },
                     label: {
                         HStack{
@@ -153,8 +149,8 @@ struct HumorView: View {
 
     func getData() {
         getHeartRateInfos()
-        getTime()
-        //getCalories
+        getTimeInfo()
+        getCaloriesInfo()
     }
 
     func getHeartRateInfos() {
@@ -186,18 +182,17 @@ struct HumorView: View {
 
             let average = stats.averageQuantity()
             let unit = HKUnit(from: "count/min")
-            print(average?.doubleValue(for: unit) ?? 0.0)
 
             DispatchQueue.main.async {
                 bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
-                addNewRegister()
+                //addNewRegister()
             }
         }
 
         healthStore.execute(query)
     }
     
-    func getTimeInfos() {
+    func getTimeInfo() {
         guard let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime) else {
             print("Não foi possível obter dados de tempo de atividade")
             return
@@ -217,30 +212,47 @@ struct HumorView: View {
 
         let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
         
-        
-//        let query = HKSampleQuery(sampleType: time, predicate: today, limit: Int(HKObjectQueryNoLimit), sortDescriptors: nil) {
-//            query, results, error in
-//
-//            guard let samples = results as? [HKQuantitySample] else {
-//                print("Não foi possível obter dados de tempo de atividade")
-//                return
-//            }
-//
-//            for sample in samples {
-//               print(sample)
-//            }
-//
-//            // The results come back on an anonymous background queue.
-//            // Dispatch to the main queue before modifying the UI.
-//
-//            DispatchQueue.main.async {
-//                // Update the UI here.
-//            }
-//        }
-        
         let query = HKStatisticsQuery(quantityType: time, quantitySamplePredicate: today, options: .cumulativeSum) {(_, statistics, _) in
             guard let stats = statistics else {
-                print("Não foi possível calcular média de freq. card.")
+                print("Não foi possível calcular o tempo de atividade")
+//                addNewRegister()
+                return
+            }
+
+            let sum = stats.sumQuantity()
+            let unit = HKUnit(from: "min")
+
+            DispatchQueue.main.async {
+                duration = NSString(format: "%.2f", sum?.doubleValue(for: unit) ?? "-") as String
+               //addNewRegister()
+            }
+        }
+        healthStore.execute(query)
+    }
+    
+    func getCaloriesInfo() {
+        guard let calories = HKObjectType.quantityType(forIdentifier: .appleExerciseTime) else {
+            print("Não foi possível obter dados de calorias")
+            return
+        }
+
+        let calendar = NSCalendar.current
+        let now = Date()
+        let components = calendar.dateComponents([.year, .month, .day], from: now)
+
+        guard let startDate = calendar.date(from: components) else {
+            fatalError("*** Unable to create the start date ***")
+        }
+
+        guard let endDate = calendar.date(byAdding: .day, value: 1, to: startDate) else {
+            fatalError("*** Unable to create the end date ***")
+        }
+
+        let today = HKQuery.predicateForSamples(withStart: startDate, end: endDate, options: [])
+        
+        let query = HKStatisticsQuery(quantityType: calories, quantitySamplePredicate: today, options: .cumulativeSum) {(_, statistics, _) in
+            guard let stats = statistics else {
+                print("Não foi possível calcular as calorias gastas")
 //                addNewRegister()
                 return
             }
@@ -250,7 +262,7 @@ struct HumorView: View {
             print(sum?.doubleValue(for: unit) ?? 0.0)
 
 //            DispatchQueue.main.async {
-//                bpm = NSString(format: "%.2f", average?.doubleValue(for: unit) ?? "-") as String
+//                calories = NSString(format: "%.2f", sum?.doubleValue(for: unit) ?? "-") as String
 //                addNewRegister()
 //            }
         }
@@ -305,19 +317,6 @@ struct HumorView: View {
         }
         
         activityView.toggle()
-        
-//        presentation.wrappedValue.dismiss()
     }
     
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        HumorView(modal: .constant(true))
-            .previewDevice("Apple Watch Series 5 - 44mm")
-        HumorView(modal: .constant(true))
-            .previewDevice("Apple Watch Series 6 - 40mm")
-        HumorView(modal: .constant(true))
-            .previewDevice("Apple Watch Series 3 - 38mm")
-    }
 }
