@@ -17,9 +17,9 @@ struct StatusModel: View {
                     .font(.title3)
                     .fontWeight(.semibold)
                     .padding(.top, 10)
-                Text("horas de \natividade")
+                Text("mins de \natividade")
                     .font(.footnote)
-                    .frame(width: 75, height: 35, alignment: .leading)
+                    .frame(width: 75, height: 40, alignment: .leading)
             }
             .padding(.leading, 5)
             
