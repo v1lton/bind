@@ -21,20 +21,27 @@ struct HumorView: View {
     @State var bpm: String = "-"
     @State var calories: String = "-"
     @State var formattedDate: String = ""
+    @State var doubleDuration: Double = 0.0
     @State var newRecord = Record()
     
-    let date: Date
-    let formatter: DateFormatter
+    private var date:
+        Date = {
+            let today = Date()
+            return today
+        }()
+    
+    private var formatter :
+        DateFormatter = {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "dd/MM"
+            
+            return dateFormatter
+        }()
+    
     
     @State var activityView: String? = nil
     
     private let healthStore = HKHealthStore()
-    
-    init() {
-        date = Date()
-        formatter = DateFormatter()
-        formatter.dateFormat = "dd/MM"
-    }
     
     var body: some View {
         ScrollView{
@@ -120,8 +127,7 @@ struct HumorView: View {
         
     }
     
-    //MARK: - GET HEALTH DATA
-    
+    //MARK: - GET HEALTH DATA    
     func healthKitPermission() {
         let heartRate = HKObjectType.quantityType(forIdentifier: .heartRate)!
         let time = HKObjectType.quantityType(forIdentifier: .appleExerciseTime)!
@@ -154,9 +160,9 @@ struct HumorView: View {
             return
         }
         
-        let calendar = NSCalendar.current
-        let now = Date()
-        let components = calendar.dateComponents([.year, .month, .day], from: now)
+        let calendar = Calendar.current
+       
+        let components = calendar.dateComponents([.year, .month, .day], from: Date())
         
         guard let startDate = calendar.date(from: components) else {
             fatalError("*** Unable to create the start date ***")
@@ -218,6 +224,8 @@ struct HumorView: View {
             let sum = stats.sumQuantity()
             let unit = HKUnit(from: "min")
             
+            doubleDuration = sum?.doubleValue(for: unit).rounded(.up) ?? 0.0
+            
             duration = NSString(format: "%.2f", sum?.doubleValue(for: unit) ?? "-") as String
         }
         healthStore.execute(query)
@@ -237,6 +245,8 @@ struct HumorView: View {
             history.first?.activityRecord?.bpm = self.bpm
             history.first?.activityRecord?.calories = self.calories
             history.first?.activityRecord?.time = self.duration
+            history.first?.activityRecord?.doubleTime = self.doubleDuration
+            
             
             newRecord = history.first ?? Record()
             print(newRecord)
@@ -254,6 +264,7 @@ struct HumorView: View {
             newActivity.bpm = self.bpm
             newActivity.calories = self.calories
             newActivity.time = self.duration
+            newActivity.doubleTime = self.doubleDuration
             
             newRegister.activityRecord = newActivity
             

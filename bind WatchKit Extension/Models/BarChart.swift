@@ -7,43 +7,6 @@
 
 import SwiftUI
 
-
-struct ChartData {
-
-    var value: Double
-    var image: String
-    var cor: String
-}
-
-let chartDataSet = [
-    ChartData( value: 240.32, image: "quadrado", cor: "cinza"),
-    ChartData( value: 200.32, image: "triangulo", cor: "ciano"),
-    ChartData( value: 260.32, image: "quadrado", cor: "cinza"),
-    ChartData( value: 350.32, image: "circulo", cor: "verde"),
-    ChartData( value: 210.32, image: "triangulo", cor: "ciano"),
-    ChartData( value: 300.32, image: "circulo", cor: "verde")
-    
-]
-
-struct BarChartCell: View {
-    
-    var value: Double
-    var barColor: String
-    var symbolType: String
-    
-    var body: some View {
-        VStack{
-            RoundedRectangle(cornerRadius: 10)
-                .fill(Color(barColor))
-                .scaleEffect(CGSize(width: 0.7, height: value), anchor: .bottom)
-            Image(symbolType)
-                .resizable()
-                .aspectRatio(contentMode:.fit)
-                .frame(width: 10, height: 10, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-        }
-    }
-}
-
 struct BarChart: View {
     
     @State private var touchLocation: CGFloat = -1
@@ -95,12 +58,6 @@ struct BarChart: View {
         touchLocation > CGFloat(index)/CGFloat(data.count) && touchLocation < CGFloat(index+1)/CGFloat(data.count)
     }
 
-}
-
-struct BarChart_Previews: PreviewProvider {
-    static var previews: some View {
-        BarChart(data: chartDataSet)
-    }
 }
 
 

@@ -28,6 +28,8 @@
 		89539A08266129870059203E /* bindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89539A07266129870059203E /* bindUITests.swift */; };
 		89DA193A26650532004B1E6D /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193926650532004B1E6D /* RecordingView.swift */; };
 		89DA193C26651F76004B1E6D /* RecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DA193B26651F76004B1E6D /* RecordingViewModel.swift */; };
+		B43215952678F2BB00B9F56F /* CharData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43215942678F2BB00B9F56F /* CharData.swift */; };
+		B43215972678F36B00B9F56F /* BarChartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B43215962678F36B00B9F56F /* BarChartCell.swift */; };
 		B4463563266506090000C1B8 /* Data.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4463561266506090000C1B8 /* Data.xcdatamodeld */; };
 		B446358626650B340000C1B8 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446358526650B340000C1B8 /* Persistence.swift */; };
 		B4463591266528690000C1B8 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B446358F266528690000C1B8 /* HistoryView.swift */; };
@@ -121,6 +123,8 @@
 		89539A09266129870059203E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		89DA193926650532004B1E6D /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 		89DA193B26651F76004B1E6D /* RecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingViewModel.swift; sourceTree = "<group>"; };
+		B43215942678F2BB00B9F56F /* CharData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharData.swift; sourceTree = "<group>"; };
+		B43215962678F36B00B9F56F /* BarChartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarChartCell.swift; sourceTree = "<group>"; };
 		B4463562266506090000C1B8 /* Record.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Record.xcdatamodel; sourceTree = "<group>"; };
 		B446358526650B340000C1B8 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		B446358F266528690000C1B8 /* HistoryView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
@@ -272,6 +276,8 @@
 				0EE5F4BF266653C800523497 /* StatusModel.swift */,
 				B4463590266528690000C1B8 /* HistoryButtonModel.swift */,
 				17BED7F22668F2830047CFB5 /* BarChart.swift */,
+				B43215962678F36B00B9F56F /* BarChartCell.swift */,
+				B43215942678F2BB00B9F56F /* CharData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -474,10 +480,12 @@
 				895399E8266129860059203E /* NotificationController.swift in Sources */,
 				0EE5F4C42666743500523497 /* DetailedDataView.swift in Sources */,
 				0EE5F4C0266653C800523497 /* StatusModel.swift in Sources */,
+				B43215972678F36B00B9F56F /* BarChartCell.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				0EA3B0D4266523ED007F07C7 /* ActivityView.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
+				B43215952678F2BB00B9F56F /* CharData.swift in Sources */,
 				B4463592266528690000C1B8 /* HistoryButtonModel.swift in Sources */,
 				895399E6266129860059203E /* HumorView.swift in Sources */,
 				89DA193A26650532004B1E6D /* RecordingView.swift in Sources */,
@@ -660,7 +668,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "bind WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -689,7 +697,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"bind WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = D84M4LK87S;
+				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "bind WatchKit Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -793,7 +801,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				INFOPLIST_FILE = bindTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -816,7 +824,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				INFOPLIST_FILE = bindTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -837,7 +845,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				INFOPLIST_FILE = bindUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -858,7 +866,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2QC8C374PG;
+				DEVELOPMENT_TEAM = SZDYT9A2D8;
 				INFOPLIST_FILE = bindUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

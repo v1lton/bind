@@ -8,10 +8,30 @@
 import SwiftUI
 
 struct InicialView: View {
+    @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: false)], animation: .easeIn) var history : FetchedResults<Record>
     
-    @State private var modal = false
-    @State private var addRecord = false
-    @State private var history = false
+    @Environment(\.managedObjectContext) var contex
+    
+//    let chartDataSet = [
+//        ChartData( value: 240.32, image: "quadrado", cor: "cinza"),
+//        ChartData( value: 200.32, image: "triangulo", cor: "ciano"),
+//        ChartData( value: 260.32, image: "quadrado", cor: "cinza"),
+//        ChartData( value: 350.32, image: "circulo", cor: "verde"),
+//        ChartData( value: 210.32, image: "triangulo", cor: "ciano"),
+//        ChartData( value: 300.32, image: "circulo", cor: "verde")
+//
+//    ]
+    var chartDataSet: [ChartData] = []
+    
+    init() {
+        for register in history {
+            let time = register.activityRecord?.doubleTime ?? 0.0
+            let image = register.image ?? "quadrado"
+            let cor = register.cor ?? "cinza"
+            let newCharData = ChartData(value: time, image: image, cor: cor)
+            chartDataSet.append(newCharData)
+        }
+    }
     
     var body: some View {
         VStack{
