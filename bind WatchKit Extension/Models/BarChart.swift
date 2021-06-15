@@ -10,7 +10,7 @@ import SwiftUI
 struct BarChart: View {
     
     @State private var touchLocation: CGFloat = -1
-
+    
     var data: [ChartData]
     
     var body: some View {
@@ -19,17 +19,27 @@ struct BarChart: View {
             GeometryReader { geometry in
                 VStack {
                     HStack { //celulas (cada barra)
-                        ForEach(0..<data.count, id: \.self) { i in
-                            BarChartCell(value: normalizedValue(index: i), barColor: data[i].cor, symbolType: data[i].image)
-                                .opacity(barIsTouched(index: i) ? 1 : 0.7)
-                                .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.05, height: 1) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                .animation(.spring())
-                                .padding(.top)
+                        if !(data.isEmpty){
+                            ForEach(0..<data.count, id: \.self) { i in
+                                BarChartCell(value: normalizedValue(index: i), barColor: data[i].cor, symbolType: data[i].image)
+                                    .opacity(barIsTouched(index: i) ? 1 : 0.7)
+                                    .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.05, height: 1) : CGSize(width: 1, height: 1), anchor: .bottom)
+                                    .animation(.spring())
+                                    .padding(.top)
+                            }
+                        } else {
+                            ForEach(0..<7, id: \.self) { i in
+                                BarChartCell(value: 0.1, barColor: "cinza", symbolType: "-")
+                                    .opacity(barIsTouched(index: i) ? 1 : 0.7)
+                                    .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.05, height: 1) : CGSize(width: 1, height: 1), anchor: .bottom)
+                                    .animation(.spring())
+                                    .padding(.top)
+                            }
                         }
                     }
                 }
             }
-
+            
         }
         .frame(width: WKInterfaceDevice.current().screenBounds.width, height: WKInterfaceDevice.current().screenBounds.height/3, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
         .padding()
@@ -48,16 +58,20 @@ struct BarChart: View {
             return 1
         }
         if max != 0 {
-            return Double(data[index].value)/Double(max)
+            if data[index].value == 0.0 {
+                return 0.1
+            } else {
+                return Double(data[index].value)/Double(max)
+            }
         } else {
-            return 1
+            return 0.1
         }
     }
     
     func barIsTouched(index: Int) -> Bool {
         touchLocation > CGFloat(index)/CGFloat(data.count) && touchLocation < CGFloat(index+1)/CGFloat(data.count)
     }
-
+    
 }
 
 

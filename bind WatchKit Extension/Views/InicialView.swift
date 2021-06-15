@@ -24,12 +24,35 @@ struct InicialView: View {
     var chartDataSet: [ChartData] = []
     
     init() {
-        for register in history {
-            let time = register.activityRecord?.doubleTime ?? 0.0
-            let image = register.image ?? "quadrado"
-            let cor = register.cor ?? "cinza"
-            let newCharData = ChartData(value: time, image: image, cor: cor)
-            chartDataSet.append(newCharData)
+        var count = 0
+        
+        if !history.isEmpty {
+            for register in history {
+                if count < 7 {
+                    let time = register.activityRecord?.doubleTime ?? 0.0
+                    let image = register.image ?? "quadrado"
+                    let cor = register.cor ?? "cinza"
+                    let newCharData = ChartData(value: time, image: image, cor: cor)
+                    chartDataSet.append(newCharData)
+                    
+                    count = count + 1
+                } else {
+                    break
+                }
+            }
+            
+            if count < 7 {
+                let i = 7 - history.count
+                let newCharData = ChartData(value: 0.0, image: "-", cor: "roxo")
+                for _ in 0..<i {
+                    chartDataSet.append(newCharData)
+                }
+            }
+        } else {
+            let newCharData = ChartData(value: 0.0, image: "-", cor: "roxo")
+            for _ in 0..<7 {
+                chartDataSet.append(newCharData)
+            }
         }
     }
     
