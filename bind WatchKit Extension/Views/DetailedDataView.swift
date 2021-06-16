@@ -14,6 +14,7 @@ struct DetailedDataView: View {
     @Binding var record: Record
     
     @State var audioPlayer: AVPlayer!
+    @State var isPlaying: Bool = false
     
     var body: some View {
         ScrollView {
@@ -26,25 +27,45 @@ struct DetailedDataView: View {
                 
                 StatusModel(record: $record) //adicionar variável para icone do humor
                 if !(record.audiopath == nil) {
-                    Button(action: {
-                        let url = URL(string: record.audiopath!)
-                        let audioItem = AVPlayerItem(url: url! as URL)
-                        audioPlayer = AVPlayer(playerItem: audioItem)
-                        audioPlayer.actionAtItemEnd = .pause
-                        audioPlayer.volume = 100
-                        audioPlayer.play()
-                    }) {
-                        Image(systemName:"play")
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .font(Font.title.weight(.semibold))
-                            .frame(width: 15, height: 15, alignment: .center)
+                    if isPlaying {
+                        Button(action: {
+                            audioPlayer.pause()
+                            isPlaying = false
+                        }) {
+                            Image(systemName:"pause")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .font(Font.title.weight(.semibold))
+                                .frame(width: 15, height: 15, alignment: .center)
+                        }
+                        .foregroundColor(Color("roxo"))
+                        .background(Color("roxo").opacity(0.14))
+                        .cornerRadius(25)
+                    } else {
+                        Button(action: {
+                            let url = URL(string: record.audiopath!)
+                            let audioItem = AVPlayerItem(url: url! as URL)
+                            audioPlayer = AVPlayer(playerItem: audioItem)
+                            audioPlayer.actionAtItemEnd = .none
+                            audioPlayer.volume = 100
+                            audioPlayer.play()
+                            isPlaying = true
+                        }) {
+                            Image(systemName:"play")
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .font(Font.title.weight(.semibold))
+                                .frame(width: 15, height: 15, alignment: .center)
+                        }
+                        .foregroundColor(Color("roxo"))
+                        .background(Color("roxo").opacity(0.14))
+                        .cornerRadius(25)
                     }
-                    .foregroundColor(Color("roxo"))
-                    .background(Color("roxo").opacity(0.14))
-                    .cornerRadius(25)
                 }
             }.padding(.horizontal)
+        }
+        .onDisappear() {
+            audioPlayer.pause()
         }
     }
 }
