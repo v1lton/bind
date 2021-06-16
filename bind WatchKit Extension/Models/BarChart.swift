@@ -9,9 +9,11 @@ import SwiftUI
 
 struct BarChart: View {
     
+    var history: FetchedResults<Record>
+    
     @State private var touchLocation: CGFloat = -1
     
-    var data: [ChartData]
+    @State var data: [ChartData] = []
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -27,15 +29,51 @@ struct BarChart: View {
                                     .animation(.spring())
                                     .padding(.top)
                             }
-                        } else {
-                            ForEach(0..<7, id: \.self) { i in
-                                BarChartCell(value: 0.1, barColor: "cinza", symbolType: "-")
-                                    .opacity(barIsTouched(index: i) ? 1 : 0.7)
-                                    .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.05, height: 1) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                    .animation(.spring())
-                                    .padding(.top)
-                            }
+                        } 
+                    }
+                }
+                .onAppear{
+                    
+                    data = []
+                    
+                    let dateFormatter = DateFormatter()
+                    dateFormatter.dateFormat = "dd/MM"
+                    
+                    let calendar = NSCalendar.current
+                    let now = Date()
+                    let components = calendar.dateComponents([.year, .month, .day], from: now)
+                    
+                    guard let startDate = calendar.date(from: components) else {
+                        fatalError("*** Unable to create the start date ***")
+                    }
+                    let array = [-6,-5,-4,-3,-2,-1,0]
+                    
+                    for i in array {
+                        
+                        guard let endDate = calendar.date(byAdding: .day, value: i, to: startDate) else {
+                            fatalError("*** Unable to create the end date ***")
                         }
+                        let stringDate = dateFormatter.string(from: endDate)
+                        print(stringDate)
+                        
+                        let arrayResult = history.filter {
+                            return $0.date == stringDate
+                        }
+                        
+                        if arrayResult.isEmpty {
+                            let newCharData = ChartData(value: 0.0, image: "-", cor: "roxo")
+                            data.append(newCharData)
+                            
+                        } else {
+                            let time = arrayResult.first!.activityRecord?.doubleTime ?? 0.0
+                            let image = arrayResult.first!.image ?? "quadrado"
+                            let cor = arrayResult.first!.cor ?? "cinza"
+                            let newCharData = ChartData(value: time, image: image, cor: cor)
+                            data.append(newCharData)
+                            
+                        }
+                        
+                        
                     }
                 }
             }
