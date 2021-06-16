@@ -8,12 +8,13 @@
 import SwiftUI
 import AVFoundation
 
+
 struct DetailedDataView: View {
     
     // Checar validade das variaveis com o que sera recebido
     @Binding var record: Record
     
-    @State var audioPlayer: AVPlayer!
+    @State var audioPlayer = AVPlayer()
     @State var isPlaying: Bool = false
     
     var body: some View {
@@ -27,7 +28,7 @@ struct DetailedDataView: View {
                 
                 StatusModel(record: $record) //adicionar variável para icone do humor
                 if !(record.audiopath == nil) {
-                    if isPlaying {
+                    HStack {
                         Button(action: {
                             audioPlayer.pause()
                             isPlaying = false
@@ -41,13 +42,11 @@ struct DetailedDataView: View {
                         .foregroundColor(Color("roxo"))
                         .background(Color("roxo").opacity(0.14))
                         .cornerRadius(25)
-                    } else {
+                    
                         Button(action: {
-                            let url = URL(string: record.audiopath!)
-                            let audioItem = AVPlayerItem(url: url! as URL)
-                            audioPlayer = AVPlayer(playerItem: audioItem)
-                            audioPlayer.actionAtItemEnd = .none
-                            audioPlayer.volume = 100
+                            if audioPlayer.currentTime() == audioPlayer.currentItem?.duration {
+                                audioPlayer.seek(to: CMTime.zero)
+                            }
                             audioPlayer.play()
                             isPlaying = true
                         }) {
@@ -63,6 +62,13 @@ struct DetailedDataView: View {
                     }
                 }
             }.padding(.horizontal)
+        }
+        .onAppear() {
+            let url = URL(string: record.audiopath!)
+            let audioItem = AVPlayerItem(url: url! as URL)
+            audioPlayer = AVPlayer(playerItem: audioItem)
+            audioPlayer.actionAtItemEnd = .pause
+            audioPlayer.volume = 100
         }
         .onDisappear() {
             audioPlayer.pause()
