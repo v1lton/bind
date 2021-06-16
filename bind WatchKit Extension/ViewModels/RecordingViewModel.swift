@@ -17,6 +17,7 @@ class RecordingViewModel: ObservableObject {
     
     let objectWillChange = PassthroughSubject<AVAudioRecorder, Never>()
     var audioRecorder: AVAudioRecorder!
+    var audioPlayer: AVPlayer!
     var audioPath: String?
     
     var recording = false {
@@ -57,10 +58,19 @@ class RecordingViewModel: ObservableObject {
                 }
     }
     
-    func stopRecording() {
+    func stopRecording(record: FetchedResults<Record>.Element) {
         audioRecorder.stop()
         recording = false
-        history.first?.audiopath = audioPath
+        record.audiopath = audioRecorder.url.absoluteString
         PersistenceController.shared.save()
+        print(record.audiopath!)
+        let url = URL(string: record.audiopath!)
+        print(url)
+        audioPlayer = AVPlayer(url: url! as URL)
+        audioPlayer.actionAtItemEnd = .pause
+        audioPlayer.volume = 100
+        print(audioPlayer.currentItem?.duration.value)
+        print(audioPlayer.status.rawValue)
+        audioPlayer.play()
     }
 }

@@ -10,6 +10,7 @@ import Combine
 import AVFoundation
 
 struct RecordingView: View {
+    @FetchRequest(entity: Record.entity(), sortDescriptors: [NSSortDescriptor(keyPath: \Record.date, ascending: true)], animation: .easeIn) var history : FetchedResults<Record>
     
     @ObservedObject var audioRecorder: RecordingViewModel
     @State var isRecording = false
@@ -31,8 +32,8 @@ struct RecordingView: View {
                 
                 if !isRecording {
                     Button(action: {
-                        isRecording.toggle()
                         self.audioRecorder.startRecording()
+                        isRecording.toggle()
                     }) {
                         ZStack {
                             Circle()
@@ -54,8 +55,8 @@ struct RecordingView: View {
                     .buttonStyle(PlainButtonStyle())
                 } else {
                     Button(action: {
+                        self.audioRecorder.stopRecording(record: history.first!)
                         isRecording.toggle()
-                        self.audioRecorder.stopRecording()
                     },
                     label: {
                         NavigationLink(
@@ -135,7 +136,7 @@ struct RecordingView: View {
                     Button(
                         action: {
                             isRecording.toggle()
-                            self.audioRecorder.stopRecording()
+                            self.audioRecorder.stopRecording(record: history.first!)
                     },
                         label: {
                             Text("toque para finalizar")

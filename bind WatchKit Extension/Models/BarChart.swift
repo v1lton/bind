@@ -27,14 +27,6 @@ struct BarChart: View {
                                     .animation(.spring())
                                     .padding(.top)
                             }
-                        } else {
-                            ForEach(0..<7, id: \.self) { i in
-                                BarChartCell(value: 0.1, barColor: "cinza", symbolType: "-")
-                                    .opacity(barIsTouched(index: i) ? 1 : 0.7)
-                                    .scaleEffect(barIsTouched(index: i) ? CGSize(width: 1.05, height: 1) : CGSize(width: 1, height: 1), anchor: .bottom)
-                                    .animation(.spring())
-                                    .padding(.top)
-                            }
                         }
                     }
                 }
