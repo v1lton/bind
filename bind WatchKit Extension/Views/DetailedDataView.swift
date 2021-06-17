@@ -6,11 +6,14 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct DetailedDataView: View {
     
     // Checar validade das variaveis com o que sera recebido
     @Binding var record: Record
+    
+    @State var audioPlayer: AVPlayer!
     
     var body: some View {
         ScrollView {
@@ -22,18 +25,25 @@ struct DetailedDataView: View {
                     .foregroundColor(Color(record.cor ?? "cinza"))
                 
                 StatusModel(record: $record) //adicionar variável para icone do humor
-                
-                Button(action: {}) {
-                    Image(systemName:"play")
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .font(Font.title.weight(.semibold))
-                        .frame(width: 15, height: 15, alignment: .center)
+                if !(record.audiopath == nil) {
+                    Button(action: {
+                        let url = URL(string: record.audiopath!)
+                        let audioItem = AVPlayerItem(url: url! as URL)
+                        audioPlayer = AVPlayer(playerItem: audioItem)
+                        audioPlayer.actionAtItemEnd = .pause
+                        audioPlayer.volume = 100
+                        audioPlayer.play()
+                    }) {
+                        Image(systemName:"play")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .font(Font.title.weight(.semibold))
+                            .frame(width: 15, height: 15, alignment: .center)
+                    }
+                    .foregroundColor(Color("roxo"))
+                    .background(Color("roxo").opacity(0.14))
+                    .cornerRadius(25)
                 }
-                .foregroundColor(Color("roxo"))
-                .background(Color("roxo").opacity(0.14))
-                .cornerRadius(25)
-                
             }.padding(.horizontal)
         }
     }

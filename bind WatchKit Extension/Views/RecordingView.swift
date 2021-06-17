@@ -16,12 +16,42 @@ struct RecordingView: View {
     @State var isRecording = false
     @State private var animateBigCircle = false
     @State private var animateStroke = false
+    @State var successView: String? = nil
     
     var body: some View {
         
         GeometryReader { geometry in
             
             VStack(alignment: .center) {
+                
+                NavigationLink(destination:
+                                SuccessMessageView()
+                                .navigationBarBackButtonHidden(true)
+                                .toolbar(content: {
+                                    ToolbarItem(placement: .cancellationAction) {
+                                        ZStack {
+                                            Image(systemName: "house.circle.fill")
+                                                .resizable()
+                                                .foregroundColor(Color("roxo"))
+                                            
+                                            Button(
+                                            action: {
+                                            NotificationCenter.default.post(name: Notification.Name("successToInicialView"), object: nil)
+                                            },
+                                            label: {
+                                            Text("     ")
+                                                .fontWeight(.bold)
+                                                .font(.system(size: 15))
+                                                .foregroundColor(Color("roxo"))
+                                            })
+                                        }
+                                    }
+                                }),
+                               tag: "toSuccess",
+                               selection: $successView) {
+                    EmptyView()
+                }
+                .buttonStyle(PlainButtonStyle())
                 
                 Text("Conte como foi \n seu dia...")
                     .font(.system(.body, design: .rounded))
@@ -55,67 +85,39 @@ struct RecordingView: View {
                     .buttonStyle(PlainButtonStyle())
                 } else {
                     Button(action: {
-                        self.audioRecorder.stopRecording(record: history.first!)
+                        self.audioRecorder.stopRecording(record: history.last!)
                         isRecording.toggle()
+                        successView = "toSuccess"
                     },
                     label: {
-                        NavigationLink(
-                            destination:
-                                SuccessMessageView()
-                                    .navigationBarBackButtonHidden(true)
-                                    .toolbar(content: {
-                                        ToolbarItem(placement: .cancellationAction) {
-                                            ZStack {
-                                                Image(systemName: "house.circle.fill")
-                                                    .resizable()
-                                                    .foregroundColor(Color("roxo"))
-                                                
-                                                Button(
-                                                action: {
-                                                NotificationCenter.default.post(name: Notification.Name("successToInicialView"), object: nil)
-                                                },
-                                                label: {
-                                                Text("     ")
-                                                    .fontWeight(.bold)
-                                                    .font(.system(size: 15))
-                                                    .foregroundColor(Color("roxo"))
-                                                })
-                                            }
-                                        }
-                                    }),
-                            label: {
-                                ZStack {
-                                    Circle()
-                                        .stroke()
-                                        .foregroundColor(.purple)
-                                        .scaleEffect(animateStroke ? 1 : 0.3)
-                                        .opacity(animateStroke ? 1 : 1)
-                                        .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
-                                        .onAppear(){
-                                            self.animateStroke.toggle()
-                                        }
-                                    
-                                    Circle()
-                                        .fill(Color.purple)
-                                        .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
-                                        .scaleEffect(animateBigCircle ? 0.8 : 1.1)
-                                        .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
-                                        .onAppear(){
-                                            self.animateBigCircle.toggle()
-                                        }
-                                    
-                                    Circle()
-                                        .fill(Color.purple)
-                                        .scaleEffect(0.75)
-                                    
-                                    Image(systemName: "mic")
-                                        .font(.system(.title2, design: .rounded))
-                                        .font(Font.system(.title2).bold())
+                        ZStack {
+                            Circle()
+                                .stroke()
+                                .foregroundColor(.purple)
+                                .scaleEffect(animateStroke ? 1 : 0.3)
+                                .opacity(animateStroke ? 1 : 1)
+                                .animation(Animation.easeInOut(duration: 2).repeatForever(autoreverses: false))
+                                .onAppear(){
+                                    self.animateStroke.toggle()
                                 }
-                                
-                            })
-                            .buttonStyle(PlainButtonStyle())
-                    
+                            
+                            Circle()
+                                .fill(Color.purple)
+                                .opacity(/*@START_MENU_TOKEN@*/0.8/*@END_MENU_TOKEN@*/)
+                                .scaleEffect(animateBigCircle ? 0.8 : 1.1)
+                                .animation(Animation.easeInOut(duration: 0.6).repeatForever(autoreverses: true))
+                                .onAppear(){
+                                    self.animateBigCircle.toggle()
+                                }
+                            
+                            Circle()
+                                .fill(Color.purple)
+                                .scaleEffect(0.75)
+                            
+                            Image(systemName: "mic")
+                                .font(.system(.title2, design: .rounded))
+                                .font(Font.system(.title2).bold())
+                        }
                     })
                     .buttonStyle(PlainButtonStyle())
                     
@@ -135,8 +137,9 @@ struct RecordingView: View {
                 } else {
                     Button(
                         action: {
+                            self.audioRecorder.stopRecording(record: history.last!)
                             isRecording.toggle()
-                            self.audioRecorder.stopRecording(record: history.first!)
+                            successView = "toSuccess"
                     },
                         label: {
                             Text("toque para finalizar")

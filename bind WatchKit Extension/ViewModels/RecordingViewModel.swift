@@ -63,14 +63,11 @@ class RecordingViewModel: ObservableObject {
         recording = false
         record.audiopath = audioRecorder.url.absoluteString
         PersistenceController.shared.save()
-        print(record.audiopath!)
-        let url = URL(string: record.audiopath!)
-        print(url)
-        audioPlayer = AVPlayer(url: url! as URL)
-        audioPlayer.actionAtItemEnd = .pause
-        audioPlayer.volume = 100
-        print(audioPlayer.currentItem?.duration.value)
-        print(audioPlayer.status.rawValue)
-        audioPlayer.play()
+        
+//        let url = URL(string: record.audiopath!)
+//        audioPlayer = AVPlayer(url: url! as URL)
+//        audioPlayer.actionAtItemEnd = .pause
+//        audioPlayer.volume = 100
+//        audioPlayer.play()
     }
 }
